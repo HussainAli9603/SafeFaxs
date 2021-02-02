@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Edit Country-management</title>
+    <!-- Tell the browser to be responsive to screen width -->
+  </head>
+
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="loading"></div>
+    <div id="layout-wrapper">
+        <!-- Navbar -->
+        <%- include('./partials/sidebar.ejs');  %> 
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <%- include('./partials/header.ejs');  %>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <div class="main-content">
+          <div class="page-content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <!-- general form elements -->
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Edit Country</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form"  action="/admin/edit/country/<%= countries._id %>" method="post">
+                      <div class="card-body">
+                        <div class="form-group col-md-6">
+                          <label for="exampleInputEmail1">Country Title</label>
+                          <input
+                            type="text"
+                            name="title"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            placeholder="Title"
+                            value="<%= countries.title %>"
+                          />
+                        </div>
+                      </div>
+                      <!-- /.card-body -->
+
+                      <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">
+                          Update
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+               
+              </div>
+              <!-- ./col -->
+            
+            </div>
+            <%- include('./partials/footer.ejs');  %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+
+    
+  </body>
+</html>

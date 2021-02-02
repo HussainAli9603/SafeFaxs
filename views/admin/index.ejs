@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>SafeFax | Dashboard</title>
+    
+    <!-- Tell the browser to be responsive to screen width -->
+    <style>
+      section.content.some-padding {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      section.content.margin_bottom {
+        padding-bottom: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+      }
+    </style>
+  </head>
+
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div id="layout-wrapper">
+    <%- include('./partials/sidebar.ejs');  %> 
+      <!-- Main Sidebar Container -->
+      <%- include('./partials/header.ejs');  %>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Main content -->
+        <div class="main-content">
+          <div class="page-content">
+            <div class="container-fluid">
+              <!-- Small boxes (Stat box) -->
+              <div class="row">
+                <div class="col-md-6 col-xl-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="float-right mt-2">
+                        <!-- <div id="total-revenue-chart"></div> -->
+                         <i class="fas fa-crown fa-3x text-gray-300"></i>
+                      </div>
+                      <div>
+                        <h4 class="mb-1 mt-1">
+                          <span data-plugin="counterup"
+                            >90</span
+                          >
+                        </h4>
+                        <p class="text-muted mb-0">Subscription</p>
+                      </div>
+                      <p class="text-muted mt-3 mb-0">
+                        <a
+                          href="/admin/user/manage-subscription"
+                          class="small-box-footer"
+                          >More info <i class="fas fa-arrow-circle-right"></i
+                        ></a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- end col-->
+                <!-- ./col -->
+           
+
+                <div class="col-md-6 col-xl-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="float-right mt-2">
+                        <!-- <div id="orders-chart"></div> -->
+                         <i class="fas fa-users fa-3x text-gray-300"></i>
+                      </div>
+                      <div>
+                        <h4 class="mb-1 mt-1">
+                          <span data-plugin="counterup"
+                            ><%= users %></span
+                          >
+                        </h4>
+                        <p class="text-muted mb-0">Registered Users</p>
+                      </div>
+                      <p class="text-muted mt-3 mb-0">
+                        <a href="/admin/getAllRegisterUser" class="small-box-footer"
+                      >More info <i class="fas fa-arrow-circle-right"></i
+                    ></a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+            
+                <!-- ./col -->
+                <div class="col-md-6 col-xl-3">
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="float-right mt-2">
+                              <!-- <div id="customers-chart"> </div> -->
+                               <i class="fas fa-crown fa-3x text-gray-300"></i>
+                          </div>
+                          <div>
+                              <h4 class="mb-1 mt-1"><span data-plugin="counterup">90</span></h4>
+                              <p class="text-muted mb-0">Send Faxes</p>
+                          </div>
+                          <p class="text-muted mt-3 mb-0">
+                            <a
+                      href="/admin/app-registered-users"
+                      class="small-box-footer"
+                      >More info <i class="fas fa-arrow-circle-right"></i
+                    ></a>
+                          </p>
+                      </div>
+                  </div>
+              </div> <!-- end col-->
+                
+                <!-- ./col -->
+              
+                  <div class="col-md-6 col-xl-3">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="float-right mt-2">
+                                <div id="growth-chart"></div>
+                                 <i class="fas fa-table fa-3x text-gray-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="mb-1 mt-1"> <span data-plugin="counterup">90</span></h4>
+                                <p class="text-muted mb-0">Billing</p>
+                            </div>
+                            <p class="text-muted mt-3 mb-0">
+                              <a
+                      href="/admin/user/manage-reports"
+                      class="small-box-footer"
+                      >More info <i class="fas fa-arrow-circle-right"></i
+                    ></a>
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+                
+               
+                <!-- ./col -->
+
+                  <!-- ./col -->
+                 
+                  <!-- ./col -->
+                    <!-- ./col -->
+                
+             
+                <!-- ./col -->
+
+              </div>
+              <!-- /.row -->
+              <!-- Main row -->
+
+              <!-- /.row (main row) -->
+            </div>
+            <!-- /.container-fluid -->
+
+            <section class="content some-padding">
+              <div class="row">
+                
+                <div class="col-md-6">
+                  <div id="product-registered"></div>
+                </div>
+            
+                <div class="col-md-6">
+                  <div id="container"></div>
+                </div>
+              </div>
+            </section>
+            <section class="content margin_bottom">
+              <div class="row">
+               
+                <div class="col-md-6">
+                  <div id="user-graph"></div>
+                </div>
+               
+                <div class="col-md-6">
+                  <div id="user-expired-subscription"></div>
+                </div>
+              </div>
+            </section>
+            <section class="content margin_bottom">
+              <div class="row">
+                
+
+                <div class="col-md-6">
+                  <div id="broker-user-graph"></div>
+                </div>
+                
+
+                <div class="col-md-6">
+                  <div id="broker-user-subscription"></div>
+                </div>
+              </div>
+            </section>
+<%- include('./partials/footer.ejs');  %>
+            <!-- /.content -->
+          </div>
+    
+    </div>
+  </div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.ajax({
+          url: "/admin/get/GraphData/total-product",
+          success: function (data) {
+            if (data != undefined && data != "") {
+              Highcharts.chart("product-registered", {
+                chart: {
+                  type: "column",
+                },
+                title: {
+                  text: "Registered Product in Categories",
+                },
+                subtitle: {
+                  text:
+                    "Over All Product Registration count in All Categories till now",
+                },
+                accessibility: {
+                  announceNewData: {
+                    enabled: true,
+                  },
+                },
+                xAxis: {
+                  type: "category",
+                },
+                yAxis: {
+                  title: {
+                    text: "Total Product Registered",
+                  },
+                },
+                legend: {
+                  enabled: false,
+                },
+                plotOptions: {
+                  series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                      enabled: true,
+                      format: "{point.y}",
+                    },
+                  },
+                },
+
+                tooltip: {
+                  headerFormat:
+                    '<span style="font-size:11px">{series.name}</span><br>',
+                  pointFormat:
+                    '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> total<br/>',
+                },
+
+                series: [
+                  {
+                    name: "Category",
+                    colorByPoint: true,
+                    data: data,
+                  },
+                ],
+              });
+            }
+          },
+        });
+        //User Subscription Graph
+        $.ajax({
+          url: "/admin/get/GraphData/categories",
+          success: function (data) {
+            if (data != undefined && data != "") {
+              Highcharts.chart("container", {
+                chart: {
+                  type: "column",
+                },
+                title: {
+                  text: "Total Product Subscription in Categories",
+                },
+                subtitle: {
+                  text:
+                    "Over All Subscription count in All Categories till now",
+                },
+                accessibility: {
+                  announceNewData: {
+                    enabled: true,
+                  },
+                },
+                xAxis: {
+                  type: "category",
+                },
+                yAxis: {
+                  title: {
+                    text: "Total Subscription",
+                  },
+                },
+                legend: {
+                  enabled: false,
+                },
+                plotOptions: {
+                  series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                      enabled: true,
+                      format: "{point.y}",
+                    },
+                  },
+                },
+
+                tooltip: {
+                  headerFormat:
+                    '<span style="font-size:11px">{series.name}</span><br>',
+                  pointFormat:
+                    '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> total<br/>',
+                },
+
+                series: [
+                  {
+                    name: "Category name",
+                    colorByPoint: true,
+                    data: data,
+                  },
+                ],
+              });
+            }
+          },
+        });
+        //User reports
+        $.ajax({
+          url: "/admin/get/user-reports/country-wise",
+          success: function (data) {
+            if (data != undefined && data != "") {
+              Highcharts.chart("user-graph", {
+                chart: {
+                  plotBackgroundColor: null,
+                  plotBorderWidth: null,
+                  plotShadow: false,
+                  type: "pie",
+                },
+                title: {
+                  text: "Registered User City wise",
+                },
+                tooltip: {
+                  pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+                },
+                accessibility: {
+                  point: {
+                    valueSuffix: "%",
+                  },
+                },
+                plotOptions: {
+                  pie: {
+                    allowPointSelect: true,
+                    cursor: "pointer",
+                    dataLabels: {
+                      enabled: true,
+                      format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+                    },
+                  },
+                },
+                series: [
+                  {
+                    name: "Registered Users",
+                    colorByPoint: true,
+                    data: data,
+                  },
+                ],
+              });
+            }
+          },
+        });
+        $.ajax({
+          url: "/admin/get/user-expired/subscription",
+          success: function (data) {
+            if (data != undefined && data != "") {
+              Highcharts.chart("user-expired-subscription", {
+                chart: {
+                  plotBackgroundColor: null,
+                  plotBorderWidth: null,
+                  plotShadow: false,
+                  type: "pie",
+                },
+                title: {
+                  text: "Expired Subscription till now Category Wise",
+                },
+                tooltip: {
+                  pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+                },
+                accessibility: {
+                  point: {
+                    valueSuffix: "%",
+                  },
+                },
+                plotOptions: {
+                  pie: {
+                    allowPointSelect: true,
+                    cursor: "pointer",
+                    dataLabels: {
+                      enabled: false,
+                    },
+                    showInLegend: true,
+                  },
+                },
+                series: [
+                  {
+                    name: "Category",
+                    colorByPoint: true,
+                    data: data,
+                  },
+                ],
+              });
+            }
+          },
+        });
+        $.ajax({
+          url: "/admin/get/broker-user/registration",
+          success: function (data) {
+            if (data != undefined && data != "") {
+              Highcharts.chart("broker-user-graph", {
+                chart: {
+                  plotBackgroundColor: null,
+                  plotBorderWidth: null,
+                  plotShadow: false,
+                  type: "pie",
+                },
+                title: {
+                  text: "Registered User role based",
+                },
+                tooltip: {
+                  pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+                },
+                accessibility: {
+                  point: {
+                    valueSuffix: "%",
+                  },
+                },
+                plotOptions: {
+                  pie: {
+                    allowPointSelect: true,
+                    cursor: "pointer",
+                    dataLabels: {
+                      enabled: false,
+                    },
+                    showInLegend: true,
+                  },
+                },
+                series: [
+                  {
+                    name: "Role",
+                    colorByPoint: true,
+                    data: data,
+                  },
+                ],
+              });
+            }
+          },
+        });
+      });
+      //console.log(myDate);
+    </script>
+  </body>
+</html>
+

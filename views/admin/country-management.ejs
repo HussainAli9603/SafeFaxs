@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Country-management</title>
+    <!-- Tell the browser to be responsive to screen width -->
+  </head>
+
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="loading"></div>
+   <!-- Navbar -->
+        <%- include('./partials/sidebar.ejs');  %> 
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <%- include('./partials/header.ejs');  %>
+        <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <div class="main-content">
+          <div class="page-content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <!-- general form elements -->
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Add Country</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" id="addCuntry">
+                      <div class="card-body">
+                        <div class="form-group col-md-6">
+                          <label for="exampleInputEmail1">Country Title</label>
+                          <input
+                            type="text"
+                            name="title"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            placeholder="Title"
+                          />
+                        </div>
+                      </div>
+                      <!-- /.card-body -->
+
+                      <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="card col-12">
+                    <div class="card-header">
+                      <h3 class="card-title">Country Management</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <table
+                        id="example1"
+                        class="table table-bordered table-striped"
+                      >
+                        <thead>
+                          <tr>
+                            <th>S#No</th>
+                            <th>Title</th>
+                            <th>Created At</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% if(locals.countries) { %> <% var sr = 1;
+                          countries.forEach((country) => { %>
+                          <tr id="record_<%=country._id%>">
+                            <td><%= sr %></td>
+                            <td><%= country.title %></td>
+                            <td>
+                              <%= country.createdAt.toLocaleString('en-US', {
+                              weekday: 'short', year: 'numeric', month: 'short',
+                              day: 'numeric' })%>
+                            </td>
+  
+                            <td>
+                              <a
+                                href="/admin/edit/country/<%=country._id%>"
+                                onclick=""
+                                class="btn btn-success btn-sm"
+                                >Edit</a
+                              >
+                              <a
+                                href="/admin/delete/country/<%=country._id%>"
+                                class="btn btn-danger btn-sm"
+                                >Delete</a
+                              >
+                            </td>
+                          </tr>
+                          <% sr++; }); %> <% } %>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <th>S#No</th>
+                            <th>Title</th>
+                            <th>Created At</th>
+                            <th>Action</th>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+              </div>
+              <!-- ./col -->
+            
+            </div>
+            <%- include('./partials/footer.ejs');  %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+    <script>
+      $("#addCuntry").submit(function (e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        $(".loading").css("display", "block");
+        $.ajax({
+          type: "POST",
+          url: "/admin/country/add",
+          processData: false,
+          contentType: false,
+          data: new FormData(this),
+          // serializes the form's elements.
+          success: function (data) {
+            $(".loading").css("display", "none");
+            window.location = "/admin/country";
+          },
+        });
+      });
+
+   
+      function removeThisRow(data) {
+        $("#record_" + data).remove();
+      }
+
+      $(function () {
+        $("#example1").DataTable();
+      });
+    </script>
+  </body>
+</html>
