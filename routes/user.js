@@ -3,50 +3,54 @@ var Users = require('./scripts/userscript');
 var passport = require('passport');
 let jwt = require('jsonwebtoken');
 var LocalStrategy = require("passport-local");
-var User = require("../models/user");
+// var User = require("../models/user");
+let TopWorld = require("../models/top-world");
+let TopRussia = require("../models/top-russia");
 
 var router = express.Router();
 
-router.get('/',(req,res)=>{
-	 Users.Welcome(req,res);
+// router.get('/top-worlds',(req,res)=>{
+//      res.render('home/top-world')
+// });
+
+router.get('/top-worlds',(req,res)=>{
+	 Users.PostTopWorlds(req,res);
+});
+router.get('/Users/:username',(req,res)=>{
+	 TopWorld.findOne({username:req.params.username},function(err,tops){
+       res.render('home/userDetails',{
+          tops:tops
+       });
+
+     })
+});
+router.get('/Top-250-russia',(req,res)=>{
+   Users.PostTop250Russia(req,res);
+});
+router.get('/user/:username',(req,res)=>{
+	   TopRussia.findOne({username:req.params.username},function(err,tops){
+       res.render('home/RussiaUserDetails',{
+          tops:tops
+       });
+
+     })
 });
 
-
-router.post('/login/user', passport.authenticate('user', {
-}),  function(req, res) {
-    
-    if (req.body.remember) {
-      req.session.cookie.maxAge = 1000 * 60 * 3;
-    } else {
-      req.session.cookie.expires = false;
-    }
-    res.send('LOGINNNNNN')
-    
-   });
-
-
-router.get('/app-user-logout/:userId', (req, res) => {
-    Users.logoutUser(req, res);
+router.get('/rooms',(req,res)=>{
+   Users.Rooms(req,res);
 });
-router.post('/register/user', (req, res) => {
-    Users.Register(req, res);
+router.get('/rooms/:id',(req,res)=>{
+   Users.RoomId(req,res);
 });
-router.get('/user/profile/:userId', (req, res) => {
-    Users.UserProfile(req, res);
-});
-router.post('/user/updateUserProfile/:userId', (req, res) => {
-    Users.UserAddProfile(req,res);
+router.get('/users-detail/:id',(req,res)=>{
+   Users.RoomUserDetail(req,res);
 });
 
-router.get('/user/getUploadImages', (req, res) => {
-    Users.UserUploadImage(req,res);
-});
-router.post('/user/uploads-Images', (req, res) => {
-    Users.UserPostUploadImage(req,res);
-});
-router.post('/user/deleteImage', (req, res) => {
-    Users.DeleteImage(req,res);
-});
+router.get('/rooms/russia-room',(req,res)=>{
+   Users.RussiaRooms(req,res);
+});  
+
+
 
 
 module.exports = router;
