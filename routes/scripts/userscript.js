@@ -22,7 +22,17 @@ module.exports = {
    return new Promise(async (resolve, reject) => {
         try {
            let TopWorld = require("../../models/top-world");
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({ args: 
+              args: [
+                '--disable-gpu',
+                '--disable-dev-shm-usage',
+                '--disable-setuid-sandbox',
+                '--no-first-run',
+                '--no-sandbox',
+                '--no-zygote',
+                '--single-process',
+            ]
+             });
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
             await newPage.goto("https://clubhouseranking.net/top-world");
