@@ -35,6 +35,7 @@ module.exports = {
              });
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
+            await newPage.waitFor(5000);
             await newPage.goto("https://clubhouseranking.net/top-world");
 
               let results = [];
@@ -69,7 +70,7 @@ module.exports = {
                             }
                           })
 
-                          
+                          await element.waitFor(5000);
                        }
                         
                         browser.close();
