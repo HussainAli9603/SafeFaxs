@@ -14,7 +14,7 @@ var router = express.Router();
 //      res.render('home/top-world')
 // });
 
-router.get('/top-worlds',timeout('120s'),(req,res)=>{
+router.get('/top-worlds',(req,res)=>{
 	 Users.PostTopWorlds(req,res);
 });
 router.get('/Users/:username',(req,res)=>{
