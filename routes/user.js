@@ -6,6 +6,7 @@ var LocalStrategy = require("passport-local");
 // var User = require("../models/user");
 let TopWorld = require("../models/top-world");
 let TopRussia = require("../models/top-russia");
+var timeout = require('connect-timeout')
 
 var router = express.Router();
 
@@ -13,7 +14,7 @@ var router = express.Router();
 //      res.render('home/top-world')
 // });
 
-router.get('/top-worlds',(req,res)=>{
+router.get('/top-worlds',timeout('120s'),(req,res)=>{
 	 Users.PostTopWorlds(req,res);
 });
 router.get('/Users/:username',(req,res)=>{
