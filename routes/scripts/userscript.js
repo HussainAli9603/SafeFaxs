@@ -22,7 +22,7 @@ module.exports = {
    return new Promise(async (resolve, reject) => {
         try {
            let TopWorld = require("../../models/top-world");
-            const browser = await puppeteer.launch({ args: 
+            const browser = await puppeteer.launch({ 
               args: [
                 '--disable-gpu',
                 '--disable-dev-shm-usage',
