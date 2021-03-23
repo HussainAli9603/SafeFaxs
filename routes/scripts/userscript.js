@@ -61,7 +61,7 @@ module.exports = {
    return new Promise(async (resolve, reject) => {
         try {
            let TopWorld = require("../../models/top-world");
-            const browser = await puppeteer.launch({ headless: headless,timeout: 30000,ignoreDefaultArgs: ['--disable-extensions'], 
+            const browser = await puppeteer.launch({ headless: headless,timeout: 90000,ignoreDefaultArgs: ['--disable-extensions'], 
               args:minimal_args
              });
             const newPage = await browser.newPage();
