@@ -15,6 +15,45 @@ let connection = require('../../config/database');
 let axios = require("axios");
 let async = require('async');
 const puppeteer = require('puppeteer');
+const headless = process.argv[2] === "headless";
+
+const minimal_args = [
+  '--autoplay-policy=user-gesture-required',
+  '--disable-background-networking',
+  '--disable-background-timer-throttling',
+  '--disable-backgrounding-occluded-windows',
+  '--disable-breakpad',
+  '--disable-client-side-phishing-detection',
+  '--disable-component-update',
+  '--disable-default-apps',
+  '--disable-dev-shm-usage',
+  '--disable-domain-reliability',
+  '--disable-extensions',
+  '--disable-features=AudioServiceOutOfProcess',
+  '--disable-hang-monitor',
+  '--disable-ipc-flooding-protection',
+  '--disable-notifications',
+  '--disable-offer-store-unmasked-wallet-cards',
+  '--disable-popup-blocking',
+  '--disable-print-preview',
+  '--disable-prompt-on-repost',
+  '--disable-renderer-backgrounding',
+  '--disable-setuid-sandbox',
+  '--disable-speech-api',
+  '--disable-sync',
+  '--hide-scrollbars',
+  '--ignore-gpu-blacklist',
+  '--metrics-recording-only',
+  '--mute-audio',
+  '--no-default-browser-check',
+  '--no-first-run',
+  '--no-pings',
+  '--no-sandbox',
+  '--no-zygote',
+  '--password-store=basic',
+  '--use-gl=swiftshader',
+  '--use-mock-keychain',
+];
 
 module.exports = {
   PostTopWorlds:async function(req,res){
@@ -22,16 +61,8 @@ module.exports = {
    return new Promise(async (resolve, reject) => {
         try {
            let TopWorld = require("../../models/top-world");
-            const browser = await puppeteer.launch({slowMo: 250,timeout: 10000,ignoreDefaultArgs: ['--disable-extensions'], 
-              args: [
-                '--disable-gpu',
-                '--disable-dev-shm-usage',
-                '--disable-setuid-sandbox',
-                '--no-first-run',
-                '--no-sandbox',
-                '--no-zygote',
-                '--single-process',
-            ]
+            const browser = await puppeteer.launch({ headless: headless,timeout: 30000,ignoreDefaultArgs: ['--disable-extensions'], 
+              args:minimal_args
              });
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
@@ -70,7 +101,7 @@ module.exports = {
                             }
                           })
 
-                          await element.waitFor(5000);
+                          // await element.waitFor(5000);
                        }
                         
                         browser.close();
