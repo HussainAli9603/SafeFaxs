@@ -89,16 +89,16 @@ module.exports = {
                                 top.followers = followers;
                                 top.save();
                             }else{
-                              //  let topWorld = new TopWorld({
-                              //   username:username,
-                              //   url:url,
-                              //   rate:rate,
-                              //   name:name,
-                              //   img:img,
-                              //   followers:followers,
-                              //   bio:bio,
-                              //    });
-                              // await topWorld.save();
+                               let topWorld = new TopWorld({
+                                username:username,
+                                url:url,
+                                rate:rate,
+                                name:name,
+                                img:img,
+                                followers:followers,
+                                bio:bio,
+                                 });
+                              await topWorld.save();
                             }
                           })
 
