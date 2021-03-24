@@ -6,7 +6,7 @@ var LocalStrategy = require("passport-local");
 // var User = require("../models/user");
 let TopWorld = require("../models/top-world");
 let TopRussia = require("../models/top-russia");
-var timeout = require('connect-timeout')
+// var timeout = require('connect-timeout')
 
 var router = express.Router();
 

@@ -17,43 +17,43 @@ let async = require('async');
 const puppeteer = require('puppeteer');
 const headless = process.argv[2] === "headless";
 
-const minimal_args = [
-  '--autoplay-policy=user-gesture-required',
-  '--disable-background-networking',
-  '--disable-background-timer-throttling',
-  '--disable-backgrounding-occluded-windows',
-  '--disable-breakpad',
-  '--disable-client-side-phishing-detection',
-  '--disable-component-update',
-  '--disable-default-apps',
-  '--disable-dev-shm-usage',
-  '--disable-domain-reliability',
-  '--disable-extensions',
-  '--disable-features=AudioServiceOutOfProcess',
-  '--disable-hang-monitor',
-  '--disable-ipc-flooding-protection',
-  '--disable-notifications',
-  '--disable-offer-store-unmasked-wallet-cards',
-  '--disable-popup-blocking',
-  '--disable-print-preview',
-  '--disable-prompt-on-repost',
-  '--disable-renderer-backgrounding',
-  '--disable-setuid-sandbox',
-  '--disable-speech-api',
-  '--disable-sync',
-  '--hide-scrollbars',
-  '--ignore-gpu-blacklist',
-  '--metrics-recording-only',
-  '--mute-audio',
-  '--no-default-browser-check',
-  '--no-first-run',
-  '--no-pings',
-  '--no-sandbox',
-  '--no-zygote',
-  '--password-store=basic',
-  '--use-gl=swiftshader',
-  '--use-mock-keychain',
-];
+// const minimal_args = [
+//   '--autoplay-policy=user-gesture-required',
+//   '--disable-background-networking',
+//   '--disable-background-timer-throttling',
+//   '--disable-backgrounding-occluded-windows',
+//   '--disable-breakpad',
+//   '--disable-client-side-phishing-detection',
+//   '--disable-component-update',
+//   '--disable-default-apps',
+//   '--disable-dev-shm-usage',
+//   '--disable-domain-reliability',
+//   '--disable-extensions',
+//   '--disable-features=AudioServiceOutOfProcess',
+//   '--disable-hang-monitor',
+//   '--disable-ipc-flooding-protection',
+//   '--disable-notifications',
+//   '--disable-offer-store-unmasked-wallet-cards',
+//   '--disable-popup-blocking',
+//   '--disable-print-preview',
+//   '--disable-prompt-on-repost',
+//   '--disable-renderer-backgrounding',
+//   '--disable-setuid-sandbox',
+//   '--disable-speech-api',
+//   '--disable-sync',
+//   '--hide-scrollbars',
+//   '--ignore-gpu-blacklist',
+//   '--metrics-recording-only',
+//   '--mute-audio',
+//   '--no-default-browser-check',
+//   '--no-first-run',
+//   '--no-pings',
+//   '--no-sandbox',
+//   '--no-zygote',
+//   '--password-store=basic',
+//   '--use-gl=swiftshader',
+//   '--use-mock-keychain',
+// ];
 
 module.exports = {
   PostTopWorlds:async function(req,res){
@@ -61,18 +61,18 @@ module.exports = {
    return new Promise(async (resolve, reject) => {
         try {
            let TopWorld = require("../../models/top-world");
-            const browser = await puppeteer.launch({waitUntil: 'domcontentloaded', headless: headless,ignoreDefaultArgs: ['--disable-extensions'], 
-              args:minimal_args
+            const browser = await puppeteer.launch({ headless: true,
+              // args:minimal_args,waitUntil: 'domcontentloaded',ignoreDefaultArgs: ['--disable-extensions'], 
              });
             const newPage = await browser.newPage();
-            // await newPage.setDefaultNavigationTimeout(0);
-            // await newPage.waitFor(5000);
+            await newPage.setDefaultNavigationTimeout(0);
+            // await newPage.waitFor(5000); 
             await newPage.goto("https://clubhouseranking.net/top-world");
-              await newPage.waitForNavigation({ waitUntil: 'domcontentloaded' });
+              // await newPage.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
               let results = [];
                 let items = await newPage.$$('a.RankingTopWorld__userPreview--1CGVV');
-                //8/onsole.log(items)
+                console.log(items)
                  for(let element of items){
                         let username = await element.$eval('.UserPreview__username--2tKrj',node5 => node5.innerText.trim());
                           // let url = await element.$eval(href);
@@ -98,6 +98,7 @@ module.exports = {
                                 followers:followers,
                                 bio:bio,
                                  });
+                               console.log(topWorld)
                               await topWorld.save();
                             }
                           })
@@ -121,6 +122,7 @@ module.exports = {
                });
   }
 run()
+
 // .then(result=>{
 //                      TopWorld.find({}).limit(50).skip(50).sort('-createdAt')
 //                             .exec(function(err,top) {
@@ -150,7 +152,7 @@ PostTop250Russia:async function(req,res){
    return new Promise(async (resolve, reject) => {
         try {
            let TopRussia = require("../../models/top-russia");
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({headless: true,});
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
             await newPage.goto("https://clubhouseranking.net/top-russia");
@@ -255,8 +257,6 @@ Rooms:async function(req,res){
               
               
                  for(let element of items){
-                   
-
                       // for (let i = 0; i < image.length; i++) { 
                   // console.log(element)
                         // let url = await element.$eval(href);
@@ -544,28 +544,43 @@ run4();
               const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
            var page =  await newPage.goto(`https://clubhouseranking.net${roomid.url}`,{waitUntil: 'networkidle0'});
-                           const items = await newPage.$$('.User__root--2Jpeo');
-                           console.log(items)
-                           for(let element of items){
-                          const userDetail = await element.$eval('.User__bio--1QL3V',node3 => node3.innerText.trim());
-                          console.log(userDetail)
+                    // const href = await page.$eval(".User__section--1GRwE.User__bio--1QL3V", (elm) => elm.textContent);
+                    // console.log(href)
+                       const element = await newPage.$$(".User__section--1GRwE > div");
+                     const text = await newPage.evaluate(element => element.textContent, element); 
+                     console.log(text)  
+                     // const text = await (await element.getProperty('User__bio--1QL3V')).jsonValue(); 
+                     // console.log(text)  
+
+                          //  const items = await newPage.$$('.User__root--2Jpeo');
+                          //  console.log(items)
+                          //  for(let element of items){
+                          // const userDetail = await element.$eval('.User__bio--1QL3V',node3 => node3.innerText.trim());
+                          // console.log(userDetail)
+
+                           // const getDimensions = await page.evaluate(() => {
+                           //    return {
+                           //      width: document.documentElement.clientWidth,
+                           //      height: document.documentElement.clientHeight
+                           //    };
+                           //  });
   
                          // await RoomUserDetail.findOne({userDetail:userDetail},async function(err,top){
                          //    if(top){
                          //       res.redirect(`/users-detail/${req.params.id}`)
                          //    }else{
 
-                               let roomUserDetail = new RoomUserDetail({
-                                   userId:req.params.id,
-                                   userDetail:userDetail,
-                                 });
+                              //  let roomUserDetail = new RoomUserDetail({
+                              //      userId:req.params.id,
+                              //      userDetail:userDetail,
+                              //    });
 
-                              console.log(roomUserDetail)
-                              await roomUserDetail.save();
+                              // console.log(roomUserDetail)
+                              // await roomUserDetail.save();
 
                           //   }
                           // })
-                           }
+                           // }
 
                             
 
