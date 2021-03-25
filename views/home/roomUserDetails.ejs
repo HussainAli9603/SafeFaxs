@@ -2,7 +2,7 @@
 
 <!-- Mirrored from themes.webinane.com/ducan/blog2.html by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 11 Dec 2014 06:22:18 GMT -->
 <head>
-	<meta http-equiv="refresh" content="3"/>
+	<meta http-equiv="ref" content=""/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Top World room User Detail</title>
@@ -85,12 +85,12 @@ anonymous">
 					<li><a href="#" title=""><img src="/images/logos.PNG" style="margin-top: -18px"></a></li>
 					<li><a href="/top-worlds" title="">Top-50 World</a></li>
 					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
-					<li><a href="/Top-250-italy" title="" class="active">Top-250 Italy</a></li>
+					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
 					<li><a href="/rooms" title="">Room</a></li>
 					<li><a href="#" title="">Room</a></li>
 					<li><a href="#" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
-					<li><a href="#" title="">Users</a></li>
+					<li><a href="#" title="" class="active">Users</a></li>
 				</ul>
 			</div>
 
@@ -120,7 +120,7 @@ anonymous">
 					<li><a href="/rooms" title="">Room</a></li>
 					<li><a href="#" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
-					<li><a href="#" title="">Users</a></li>
+					<li><a href="#" title="" class="active">>Users</a></li>
 			</ul>
 		</div>	
 	</header>
@@ -139,12 +139,12 @@ anonymous">
 								<div id="recent" class="tab-pane  in active">
 									<div class="tab-recent" id="tab-recent">
 										<ul style="text-decoration: none;list-style: none;">
-											<li><span><img src="<%= top  %>" style="border-radius: 33px; width:130px;height: 130px; " alt=""  />
-											<span class="dot" style="margin-top: 112px;margin-right: 12px;padding: 3px;"><%= top %></span></span>
+											<li><span><img src="<%= top.img1  %>" style="border-radius: 33px; width:130px;height: 130px; " alt=""  />
+											</span>
 											<h4 style="color: gray">Followers:</h4>
-											<h1 style="margin-top: 4px;color: black;font-size: 46px"><%= top %></h1>
-											<h1 style="margin-top: 4px;color: gray;font-size: 39px"><%= top %><span style="color: black">
-												<%= top.userDetail %></span></h1>
+											<h1 style="margin-top: 4px;color: black;font-size: 46px"><%= top.followers %></h1>
+											<h1 style="margin-top: 4px;color: gray;font-size: 39px"><%= top.username %><span style="color: black">
+												<%= top.name %></span></h1>
 											
 											</li>
 										</ul>
@@ -169,7 +169,7 @@ anonymous">
 				<div class="col-md-2">
 				<a href="https://www.twitter.com/<%= top %>" style="color:black;text-decoration: underline;"><h3>Twitter</h3></a></div></div>
 				<br>
-				<h5><%= top %></h5>
+				<h5><%= top.userDetail %></h5>
 					    </div>
 		      </div>
 		    </div>

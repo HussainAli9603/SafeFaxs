@@ -39,7 +39,7 @@ router.get('/user/:username',(req,res)=>{
 
 router.get('/rooms',(req,res)=>{
    Users.Rooms(req,res);
-});
+}); 
 router.get('/rooms/:id',(req,res)=>{
    Users.RoomId(req,res);
 });
@@ -47,8 +47,12 @@ router.get('/users-detail/:id',(req,res)=>{
    Users.RoomUserDetail(req,res);
 });
 
-router.get('/rooms/russia-room',(req,res)=>{
-   Users.RussiaRooms(req,res);
+
+router.get('/room/russia-rooms',(req,res)=>{
+   Users.RussiaRoomss(req,res);  
+});
+router.get('/Russia-rooms/:id',(req,res)=>{
+   Users.RussiaRoomId(req,res);
 });  
 
 

@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 
-let RussiaRoomsSchema = new mongoose.Schema({
+let russiaRoomIdSchema = new mongoose.Schema({
 
     url: {
         type: String,
@@ -8,20 +8,20 @@ let RussiaRoomsSchema = new mongoose.Schema({
     name: {
         type: String,
     },
-    img1 :[{
+    room :{
        type: String
-    }],
-    users :{
+    },
+    username :{
         type: String
     },
-    comment:{
+    img1:{
       type: String
     },
-    local:{
-       type:String,
-       default:"1"
-    }
+     local:{
+        type:String,
+        default:"1"
+     }
    
 },{ timestamps: true });
 
-module.exports = mongoose.model('russiaRoom', RussiaRoomsSchema);
+module.exports = mongoose.model('RussiaRoomId', russiaRoomIdSchema);

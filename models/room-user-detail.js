@@ -8,6 +8,18 @@ let RoomUserDetailSchema = new mongoose.Schema({
     userDetail: {
         type: String,
     },
+     name: {
+        type: String,
+    },
+    followers :{
+       type: String
+    },
+    username :{
+        type: String
+    },
+    img1:{
+      type: String
+    },
     
      local:{
         type:String,

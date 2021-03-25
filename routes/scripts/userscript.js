@@ -6,6 +6,7 @@ let TopWorld = require("../../models/top-world");
 let TopRussia = require("../../models/top-russia");
 let Rooms = require("../../models/rooms");
 let RussiaRooms = require("../../models/Russiarooms");
+let RussiaRoomsId = require("../../models/russia-roomId");
 let RoomId = require("../../models/roomId");
 let RoomUserDetail = require("../../models/room-user-detail");
 let mkdir = require('mkdir');
@@ -247,7 +248,7 @@ Rooms:async function(req,res){
                 var allDelete = await Rooms.deleteMany({local:1 || ""});
                 if(allDelete){
 
-            const newPage = await browser.newPage();
+            const newPage = await browser.newPage({headless: true});
             await newPage.setDefaultNavigationTimeout(0);
             await newPage.goto("https://clubhouseranking.net/rooms",{waitUntil: 'networkidle0'});
 
@@ -396,16 +397,6 @@ Rooms:async function(req,res){
                });
   }
 run3()
-// .then(result=>{
-     
-//                                Rooms.find({},function(err,topss){//.sort('-createdAt')
-//                           console.log(topss)
-//                                      res.render('home/rooms',{
-//                                       topss:topss,
-//                                      })
-//                                   })              
-// });
-
 
  },
 
@@ -418,21 +409,19 @@ RoomId:async function(req,res){
         try {
 
            // let RoomId = require("../../models/roomsId");
-            const browser = await puppeteer.launch({headless: true,
-  // slowMo: 250, // slow down by 250ms
-  });
+            // const browser = await puppeteer.launch({headless: true}); // slowMo: 250, // slow down by 250ms
+  
             // const newPage = await browser.newPage();
             // await newPage.setDefaultNavigationTimeout(0);
             // await newPage.goto("https://clubhouseranking.net/rooms",{waitUntil: 'networkidle0'});
 
               // let results = [];
-               await Rooms.findOne({_id:req.params.id},async function(err,roomid){
-
+    await Rooms.findOne({_id:req.params.id},async function(err,roomid){
                
                 // if(roomid){
                   // console.log(roomid)
-            const browser = await puppeteer.launch({headless: true, // slow down by 250ms
-  });
+            const browser = await puppeteer.launch({headless: true }); // slow down by 250ms
+ 
             // var allDelete = await RoomId.deleteMany({local:1})
 
               const newPage = await browser.newPage();
@@ -455,10 +444,10 @@ RoomId:async function(req,res){
                            // console.log(img)
                            // console.log(username)
                           // let url = await element.$eval(a => a.getProperty('href'));
-                          RoomId.findOne({name:name},async function(err,top){
-                            if(top){
-                               res.redirect(`/rooms/${req.params.id}`)
-                            }else{
+                          // RoomId.findOne({name:name},async function(err,top){
+                          //   if(top){
+                          //      res.redirect(`/rooms/${req.params.id}`)
+                          //   }else{
                                let roomId = new RoomId({
                                 room:req.params.id,
                                 url:url,
@@ -468,8 +457,8 @@ RoomId:async function(req,res){
                                  });
                                console.log(roomId)
                               await roomId.save();
-                            }
-                          })
+                          //   }
+                          // })
                             
 
                        }
@@ -477,12 +466,7 @@ RoomId:async function(req,res){
                      //   // res.redirect('/rooms')
                      //   console.log('Error')
                      // }
-
-                      })
-
-                        
-                         
-                             await RoomId.find({room:req.params.id},async function(err,top){
+                      await RoomId.find({room:req.params.id},async function(err,top){
                           // await Rooms.findOne({_id:req.params.id},function(roomId){
                           console.log(top)
                                      res.render('home/room-groups',{
@@ -492,6 +476,12 @@ RoomId:async function(req,res){
                                 // })
                               })      
                         browser.close();
+
+                      })
+
+                        
+                         
+                            
                        
                         
                                   
@@ -505,18 +495,6 @@ RoomId:async function(req,res){
   }
 // setInterval(run4,20000)
 run4();
-// setTimeout
-// .then(result=>{
-//                      RoomId.find({})
-//                             .exec(function(err,top) {
-//                                  return res.render('home/room-groups',{
-//                                    top:top
-//                              });
-                              
-//                             });
-// });
-
-
  },
 
 
@@ -528,17 +506,16 @@ run4();
         try {
 
            // let RoomId = require("../../models/roomsId");
-            const browser = await puppeteer.launch({headless: true,
-  // slowMo: 250, // slow down by 250ms
-});
+            // const browser = await puppeteer.launch({headless: true});// slowMo: 250, // slow down by 250ms
+
 
                RoomId.findOne({_id:req.params.id},async function(err,roomid){
 
                
                 // if(roomid){
                   // console.log(roomid)
-            const browser = await puppeteer.launch({headless: true,slowMo: 250, // slow down by 250ms
-});
+            const browser = await puppeteer.launch({headless: true,slowMo: 250}); // slow down by 250ms
+
             // var allDelete = await RoomId.deleteMany({local:1})
 
               const newPage = await browser.newPage();
@@ -546,18 +523,22 @@ run4();
            var page =  await newPage.goto(`https://clubhouseranking.net${roomid.url}`,{waitUntil: 'networkidle0'});
                     // const href = await page.$eval(".User__section--1GRwE.User__bio--1QL3V", (elm) => elm.textContent);
                     // console.log(href)
-                       const element = await newPage.$$(".User__section--1GRwE > div");
-                     const text = await newPage.evaluate(element => element.textContent, element); 
-                     console.log(text)  
                      // const text = await (await element.getProperty('User__bio--1QL3V')).jsonValue(); 
                      // console.log(text)  
 
-                          //  const items = await newPage.$$('.User__root--2Jpeo');
-                          //  console.log(items)
-                          //  for(let element of items){
-                          // const userDetail = await element.$eval('.User__bio--1QL3V',node3 => node3.innerText.trim());
-                          // console.log(userDetail)
-
+                           const items = await newPage.$$('.User__root--2Jpeo');
+                           // console.log(items)
+                           for(let element of items){
+                          const userDetail = await element.$eval('.User__bio--1QL3V',node3 => node3.innerText.trim());
+                  const followers = await element.$eval('.UserPreview__followers--155pp',node4 => node4.innerText.trim());
+                  const img = await element.$eval('img',node1 => node1.src);
+                  const name = await element.$eval('.UserPreview__name--32-ta',node6 => node6.innerText.trim());
+                  const username = await element.$eval('.UserPreview__username--2tKrj',node5 => node5.innerText.trim());
+                          console.log(followers)
+                          console.log(img)
+                          console.log(name)
+                          console.log(username)
+                                                  
                            // const getDimensions = await page.evaluate(() => {
                            //    return {
                            //      width: document.documentElement.clientWidth,
@@ -570,19 +551,39 @@ run4();
                          //       res.redirect(`/users-detail/${req.params.id}`)
                          //    }else{
 
-                              //  let roomUserDetail = new RoomUserDetail({
-                              //      userId:req.params.id,
-                              //      userDetail:userDetail,
-                              //    });
+                               let roomUserDetail = new RoomUserDetail({
+                                   userId:req.params.id,
+                                   userDetail:userDetail,
+                                   followers:followers,
+                                   img1:img,
+                                   name:name,
+                                   username:username,
+                                 });
 
-                              // console.log(roomUserDetail)
-                              // await roomUserDetail.save();
+                              console.log(roomUserDetail)
+                              await roomUserDetail.save();
 
                           //   }
                           // })
-                           // }
+                           }
 
-                            
+                            RoomUserDetail.findOne({userId:req.params.id})
+                        .populate({ 
+                          path : 'userId',
+                          model : 'RoomUserDetail'})
+                        .then((top)=>{
+                           console.log(top)
+                         
+                          // console.log(roomId)
+                                     res.render('home/roomUserDetails',{
+                                      top:top,
+                                      // roomId:roomId
+                                   
+                                })
+                              }) 
+
+                               browser.close();
+
 
                        // }
                      // }else{
@@ -593,22 +594,9 @@ run4();
                       })
                         
                          
-                        browser.close();
+                     
                            
-                        //       RoomUserDetail.findOne({userId:req.params.id})
-                        // .populate({ 
-                        //   path : 'userId',
-                        //   model : 'RoomId'})
-                        // .then((err,top)=>{
-                        //    console.log(top)
-                         
-                        //   // console.log(roomId)
-                        //              res.render('home/roomUserDetails',{
-                        //               top:top,
-                        //               // roomId:roomId
-                                   
-                        //         })
-                        //       }) 
+                      
                                   
                         
                   
@@ -619,32 +607,15 @@ run4();
                });
   }
 run5()
-// .then(result=>{
-                   // RoomUserDetail.findOne({userId:req.params.id})
-                   //      .populate({ 
-                   //        path : 'userId',
-                   //        model : 'RoomId'})
-                   //      .then((err,top)=>{
-                         
-                   //        // console.log(roomId)
-                   //                   res.render('home/roomUserDetails',{
-                   //                    top:top,
-                   //                    // roomId:roomId
-                                   
-                   //              })
-                   //            }) 
-// });
-
-
  },
 
   // -=-=-=-=-=-=-=-==-=-=-=--===--=-=-=-=-=-=-=-=-=-------==-===-=-==-=-==-=-==-=-=-=
 
-RussiaRooms:async function(req,res){
+RussiaRoomss:async function(req,res){
  function run6 () {
    return new Promise(async (resolve, reject) => {
         try {
-           let RussiaRooms = require("../../models/russiaRooms");
+           let RussiaRooms = require("../../models/Russiarooms");
             const browser = await puppeteer.launch({headless: true,
   // slowMo: 250, // slow down by 250ms
 });
@@ -800,15 +771,6 @@ RussiaRooms:async function(req,res){
                });
   }
 run6()
-// .then(result=>{
-     
-//                                Rooms.find({},function(err,topss){//.sort('-createdAt')
-//                           console.log(topss)
-//                                      res.render('home/rooms',{
-//                                       topss:topss,
-//                                      })
-//                                   })              
-// });
 
 
  },
@@ -821,11 +783,6 @@ RussiaRoomId:async function(req,res){
    return new Promise(async (resolve, reject) => {
         try {
 
-           // let RoomId = require("../../models/roomsId");
-            const browser = await puppeteer.launch({headless: true,
-  // slowMo: 250, // slow down by 250ms
-  });
-
             // const newPage = await browser.newPage();
             // await newPage.setDefaultNavigationTimeout(0);
             // await newPage.goto("https://clubhouseranking.net/rooms",{waitUntil: 'networkidle0'});
@@ -833,11 +790,7 @@ RussiaRoomId:async function(req,res){
               // let results = [];
               var asss = await RussiaRooms.findOne({_id:req.params.id},async function(err,roomid){
 
-               
-                if(roomid){
-                  // console.log(roomid)
-            const browser = await puppeteer.launch({headless: true, // slow down by 250ms
-  });
+            const browser = await puppeteer.launch({headless: true}); // slow down by 250ms
             // var allDelete = await RoomId.deleteMany({local:1})
 
               const newPage = await browser.newPage();
@@ -860,11 +813,11 @@ RussiaRoomId:async function(req,res){
                            // console.log(img)
                            // console.log(username)
                           // let url = await element.$eval(a => a.getProperty('href'));
-                          RussiaRoomsId.findOne({name:name},async function(err,top){
-                            if(top){
-                               res.redirect(`/rooms/${req.params.id}`)
-                            }else{
-                               let roomId = new RussiaRooms({
+                          // RussiaRoomsId.findOne({name:name},async function(err,top){
+                          //   if(top){
+                          //      res.redirect(`/rooms/${req.params.id}`)
+                          //   }else{
+                               let roomId = new RussiaRoomsId({
                                 room:req.params.id,
                                 url:url,
                                 name:name,
@@ -873,14 +826,9 @@ RussiaRoomId:async function(req,res){
                                  });
                                console.log(roomId)
                               await roomId.save();
-                            }
-                          })
-                            
-
-                       }
-                     }else{
-                       // res.redirect('/rooms')
-                       console.log('Error')
+                          //   }
+                          // })
+                          
                      }
 
                       })
@@ -908,7 +856,7 @@ RussiaRoomId:async function(req,res){
                    }
                });
   }
-setInterval(run4,20000)
+run7()
 // setTimeout
 // .then(result=>{
 //                      RoomId.find({})

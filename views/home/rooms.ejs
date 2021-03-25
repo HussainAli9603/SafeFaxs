@@ -35,6 +35,8 @@
 <link rel="alternate stylesheet" type="text/css" href="css/grunge.css" title="grunge"/> <!-- Grunge -->
 <link rel="alternate stylesheet" type="text/css" href="css/brown.css" title="brown"/> <!-- Brown -->
 
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 </head>
 
 <style>
@@ -114,11 +116,19 @@ h5{
 
 <section class="block" style="margin-top: -24px">
 	<div class="container">
-<p style="font-size: 30px">Rooms:<span style="color: gray">popular in the World</span><br><i style="font-size: 16px;color: Black">Location:<select>
-	                                   <a href="/rooms"><option>World</option></a>
-	                                   <a href="/rooms/russia-room"><option>Russia</option></a>
-	                                   <option>Italy</option>
-                                    </select></i></p>
+<p style="font-size: 30px">Rooms:<span style="color: gray">popular in the World</span><br><i style="font-size: 16px;color: Black">
+	                               
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Location
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/rooms">World</a>
+            <a class="dropdown-item" href="/room/russia-rooms">Russia</a>
+            <a class="dropdown-item" href="#">Italy</a>
+        </div>
+    </div>
+                                </p>
 		
 
 		<div class="row black" style="border-botto: 1px solid #86BE99">
@@ -130,7 +140,7 @@ h5{
 					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
 <span style="color: black; font-size: 22px;"><%= topsss.name %></span>
  
-								<div id="recent" class="tab-pane fade in active">
+								<div id="recent" class="tab-pane  in active">
 	                     <input type="hidden" name="roomIdd" value="<%= topsss.id %>">
 									<div class="tab-recent" id="tab-recent">
 										<ul style="text-decoration: none;list-style: none;">
@@ -228,6 +238,9 @@ h5{
 <!-- SLIDER REVOLUTION -->
 <script type="text/javascript" src="js/jquery.themepunch.plugins.min.js"></script>
 <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
+ <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
 <script type="text/javascript">
@@ -285,6 +298,21 @@ h5{
   location.reload();
 }, 30000);
 </script> -->
+
+<script>
+	function RussiaRoom(){
+    var ajax =new XMLHttpRequest();
+    ajax.open("GET","/rooms/russia-room",true);
+    ajax.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status== 200){
+        var response = JSON.parse(this.responseText);
+      }
+    };
+    var formData = new FormData();
+    ajax.send(formData);
+    return false;
+}
+</script>
 
 </body>
 
