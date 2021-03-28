@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ducan - Blog2 Page</title>
+<title>Russia User Detail</title>
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <!-- <meta http-equiv="Refresh" content="300">  -->
@@ -72,11 +72,10 @@ anonymous">
 				<ul>
 					<li><a href="#" title=""><img src="/images/logos.PNG" style="margin-top: -18px"></a></li>
 					<li><a href="/top-worlds" title="">Top-50 World</a></li>
-					<li><a href="/Top-250-russia" title=""  class="active">Top-250 Russia</a></li>
+					<li><a href="/Top-250-russia" title=""  >Top-250 Russia</a></li>
 					<li><a href="/Top-250-italy" title="" class="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="">Room</a></li>
-					<li><a href="#" title="">Room</a></li>
-					<li><a href="#" title="">Events</a></li>
+					<li><a href="/rooms" title="" class="active">Room</a></li>
+					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 				</ul>
@@ -106,7 +105,7 @@ anonymous">
 					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
 					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
 					<li><a href="/rooms" title="">Room</a></li>
-					<li><a href="#" title="">Events</a></li>
+					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 			</ul>
@@ -121,14 +120,14 @@ anonymous">
 		  <div class="col-md-12">
 		    <div class="card">
 		      <div class="card-body">
-
+                  <% if(tops != "" && tops != null){ %>
 		        <div class="product-tab" style="width: 100%;">
 							<div class="tab-content" id="myTabContent">
 								<div id="recent" class="tab-pane  in active">
 									<div class="tab-recent" id="tab-recent">
 										<ul style="text-decoration: none;list-style: none;">
-											<li><span><img src="<%= tops.img  %>" style="border-radius: 33px; width:130px;height: 130px; " alt=""  />
-											<span class="dot" style="margin-top: 112px;margin-right: 12px;padding: 3px;"><%= tops.rate %></span></span>
+											<li><span><img src="<%= tops.img1  %>" style="border-radius: 33px; width:130px;height: 130px; " alt=""  />
+											
 											<h4 style="color: gray">Followers:</h4>
 											<h1 style="margin-top: 4px;color: black;font-size: 46px"><%= tops.followers %></h1>
 											<h1 style="margin-top: 4px;color: gray;font-size: 39px"><%= tops.username %><span style="color: black">
@@ -139,7 +138,7 @@ anonymous">
 				
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 						<!-- <div style="margin: 22px;">
@@ -157,8 +156,12 @@ anonymous">
 				<div class="col-md-2">
 				<a href="https://www.twitter.com/<%= tops.username %>" style="color:black;text-decoration: underline;"><h3>Twitter</h3></a></div></div>
 				<br>
-				<h5><%= tops.bio %></h5>
+				<h5><%= tops.userDetail %></h5>
 					    </div>
+
+					    <% }else{ %>
+						  <h2> There is no user </h2>		
+						<% } %>		
 		      </div>
 		    </div>
 		  </div>

@@ -5,7 +5,7 @@
 	<meta http-equiv="refresh" content=""/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Club-Rooms</title>
+<title>Club-Events</title>
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 
@@ -74,8 +74,8 @@ h5{
 					<li><a href="/top-worlds" title="">Top-50 World</a></li>
 					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
 					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="" class="active">Room</a></li>
-					<li><a href="/events" title="">Events</a></li>
+					<li><a href="/rooms" title="">Room</a></li>
+					<li><a href="/events" title="" class="active">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 				</ul>
@@ -103,7 +103,7 @@ h5{
 				<li><a href="/top-worlds" title="">Top-50 World</a></li>
 					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
 					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="" class="active">Room</a></li>
+					<li><a href="/rooms" title="">Room</a></li>
 					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
@@ -115,7 +115,7 @@ h5{
 
 <section class="block" style="margin-top: -24px">
 	<div class="container">
-<p style="font-size: 30px">Rooms:<span style="color: gray">popular in the World</span><br><i style="font-size: 16px;color: Black">
+<p style="font-size: 30px">Events:<span style="color: gray">Upcomming in the Russia</span><br><i style="font-size: 16px;color: Black">
 	                               
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -128,19 +128,23 @@ h5{
         </div>
     </div>
                                 </p>
-		
 
+		<!-- ------------------------------------------------------------------------------ -->
+		
 		<div class="row black" style="border-botto: 1px solid #86BE99">
-			<% topss.forEach(function(topsss){ %>
+			<% if(topss != "" && topss != null){ %>
+				<% topss.forEach(function(topsss){ %>
 			<div class="col-md-12">
 				<aside>
-                    <a href="/rooms/<%= topsss.id %>" id="btn">
+                    <a href="/events-russia/<%= topsss.id %>">
 						<div class="product-tab" style="width: 150%;">
+
 					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
+						<p style="color: gray; font-weight: 700"><span><%= topsss.time %></span></p>
 <span style="color: black; font-size: 22px;"><%= topsss.name %></span>
  
-								<div id="recent" class="tab-pane  in active">
-	                     <input type="hidden" name="roomIdd" value="<%= topsss.id %>">
+								<div id="recent" class="tab-pane in active">
+	
 									<div class="tab-recent" id="tab-recent">
 										<ul style="text-decoration: none;list-style: none;">
 				<li><span style="margin-top: 10px;">
@@ -156,8 +160,9 @@ h5{
 				
 									</div>
 								</div>
-		<h5 style="color:black"><i><%= topsss.comment %></i></h5><br><br>
-		<p><span style="color: black"><%= topsss.users %></span></p>					
+		<span style="color:black"><i><%= topsss.users %></i></span><br><br>
+		<h5 style="color: gray"><%= topsss.bio %></h5>
+							
 <br><br>
 								
 							</div>
@@ -166,40 +171,9 @@ h5{
 				</aside>
 			</div>
 			<% }) %>
-			<!-- ------------------------------------------------------------------- -->
-        <!--   <div class="col-md-12">
-				<aside>
-                    <a href="">
-						<div class="product-tab" style="width: 150%;">
-					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
-<span style="color: black; font-size: 22px;">🍳Breakfast w/ Champions 💰The Millionaire Breakfast Club</span>
- 
-								<div id="recent" class="tab-pane fade in active">
-	
-									<div class="tab-recent" id="tab-recent">
-										<ul style="text-decoration: none;list-style: none;">
-				<li><span style="margin-top: 10px;">
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-
-											</span>
-											</li>
-											
-											
-										</ul>
-				
-									</div>
-								</div>
-		<span style="color:black"><i>Glenn Lundy,LIZZA MONET MORALES,Scott Simons,William Tong,The Joint Venture Expert,Chris Winfield,</i></span>
-		<p><span>12345</span><i class="fas fa-user"></i> / <span>666</span><i class="fas fa-comment"></i>					
-<br><br>
-								
-							</div>
-						</div>
-				    </a>
-				</aside>
-			</div> -->
+			<% }else{ %>
+               <h3>Comming Soon</h3>
+			<% } %>
 			<!-- ------------------------------------------------------------------- -->
 		</div><br>
 
@@ -237,9 +211,6 @@ h5{
 <!-- SLIDER REVOLUTION -->
 <script type="text/javascript" src="js/jquery.themepunch.plugins.min.js"></script>
 <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
- <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
 <script type="text/javascript">
@@ -292,26 +263,6 @@ h5{
 
 
 </script>	
-<!-- <script type="text/javascript">
-	setTimeout(function() {
-  location.reload();
-}, 30000);
-</script> -->
-
-<script>
-	function RussiaRoom(){
-    var ajax =new XMLHttpRequest();
-    ajax.open("GET","/rooms/russia-room",true);
-    ajax.onreadystatechange = function(){
-      if(this.readyState == 4 && this.status== 200){
-        var response = JSON.parse(this.responseText);
-      }
-    };
-    var formData = new FormData();
-    ajax.send(formData);
-    return false;
-}
-</script>
 
 </body>
 

@@ -2,10 +2,9 @@
 
 <!-- Mirrored from themes.webinane.com/ducan/blog2.html by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 11 Dec 2014 06:22:18 GMT -->
 <head>
-	<meta http-equiv="refresh" content=""/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Club-Rooms</title>
+<title>Top Italy</title>
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 
@@ -35,8 +34,6 @@
 <link rel="alternate stylesheet" type="text/css" href="css/grunge.css" title="grunge"/> <!-- Grunge -->
 <link rel="alternate stylesheet" type="text/css" href="css/brown.css" title="brown"/> <!-- Brown -->
 
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
 </head>
 
 <style>
@@ -54,27 +51,40 @@
 }
 h5{
     display: inline-block;
-    max-width: 400px;
+    max-width: 200px;
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
 }
 </style>
 
+<!-- <script>
+        setInterval(function () { autoloadpage(); }, 3000); // it will call the function autoload() after each 30 seconds. 
+        function autoloadpage() {
+            $.ajax({
+                url: "/user/:username",
+                type: "GET",
+                success: function(data) {
+                    $("#wrapper").html(data); // here the wrapper is main div
+                }
+            });
+        }
+        </script> -->
 
-<body style="background-color: #F2EFE4">
+
+<body style="background-color: #F2EFE4" onload="load()">
 <div class="theme-layout">
 
-	<header class="header1" style="border-bottom: 1px solid gray; margin-top: -7px;height:70px">
+	<header class="header1" style="border-bottom: 1px solid black; margin-top: -7px;height:70px">
 	<nav>	
 		   <div class="">
 			<div class="menu">
 				<ul>
-					<li><a href="/" title=""><img src="images/logos.PNG" style="margin-top: -18px"></a></li>
+					<li><a href="#" title=""><img src="images/logos.PNG" style="margin-top: -18px"></a></li>
 					<li><a href="/top-worlds" title="">Top-50 World</a></li>
-					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/Top-250-russia" title="" class="active">Top-250 Russia</a></li>
 					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="" class="active">Room</a></li>
+					<li><a href="/rooms" title="">Room</a></li>
 					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
@@ -100,10 +110,10 @@ h5{
 		<div class="responsive-menu">
 				<a class="menu-dropdown-btn" title="">MENU <i class="fa fa-align-justify"></i></a>
 			<ul>
-				<li><a href="/top-worlds" title="">Top-50 World</a></li>
-					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
+				    <li><a href="/top-worlds" title="">Top-50 World</a></li>
+					<li><a href="/Top-250-russia" title="" class="active">Top-250 Russia</a></li>
 					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="" class="active">Room</a></li>
+					<li><a href="/rooms" title="">Room</a></li>
 					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
@@ -113,42 +123,57 @@ h5{
 
 		<!-- ------------------------------------------------------------------------------ -->
 
-<section class="block" style="margin-top: -24px">
+<section class="block" style="margin-top: -34px">
 	<div class="container">
-<p style="font-size: 30px">Rooms:<span style="color: gray">popular in the World</span><br><i style="font-size: 16px;color: Black">
-	                               
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Location
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/rooms">World</a>
-            <a class="dropdown-item" href="/room/russia-rooms">Russia</a>
-            <a class="dropdown-item" href="#">Italy</a>
-        </div>
-    </div>
-                                </p>
-		
+<p style="font-size: 30px">Top-250 Italy:<span style="color: gray">ranking of the most popular Clubhouse influencers in Italy</span><br><i style="font-size: 22px;color: #86BE99">ranking is updated every hour</i></p>
+			<% top.forEach(function(tops){ %>
+				<div class="row black" style="border-botto: 1px solid #86BE99">
+					<div class="col-md-12">
+						<aside>
+		                    <a href="/italy-user/<%= tops.name %>">
+								<div class="product-tab" style="width: 150%;">
+									<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
+										<div id="recent" class="tab-pane fade in active">
+											<div class="tab-recent" id="tab-recent">
+												<ul style="text-decoration: none;list-style: none;">
+													<li><span><img src="<%= tops.img %>" style="border-radius: 33px; width:130px;height: 130px; " alt=""  /></span>
+													
+													<h4 style="color: gray">Followers:</h4>
+													<h1 style="margin-top: -7px;color: black"><%= tops.followers%></h1>
+													<h2 style="margin-top: -6px;color: gray">
+												<span style="color: black"><%= tops.name %></span></h2>
+													  
+													</li>
+													
+													
+												</ul>
+						
+											</div>
+										</div>
+										
+									</div>
+								</div>
+						    </a>
+						</aside>
+					</div>
+				</div><br>
+	    	<% }); %>
 
-		<div class="row black" style="border-botto: 1px solid #86BE99">
-			<% topss.forEach(function(topsss){ %>
+		<!-- <div class="row black" style="border-botto: 1px solid #86BE99;margin-top: -15px" >
 			<div class="col-md-12">
 				<aside>
-                    <a href="/rooms/<%= topsss.id %>" id="btn">
+                    <a href="">
 						<div class="product-tab" style="width: 150%;">
-					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
-<span style="color: black; font-size: 22px;"><%= topsss.name %></span>
- 
-								<div id="recent" class="tab-pane  in active">
-	                     <input type="hidden" name="roomIdd" value="<%= topsss.id %>">
+							<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
+								<div id="recent" class="tab-pane fade in active">
 									<div class="tab-recent" id="tab-recent">
 										<ul style="text-decoration: none;list-style: none;">
-				<li><span style="margin-top: 10px;">
-					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-
-											</span>
+											<li><span><img src="images/product-tab.jpg" style="border-radius: 33px; width:130px;height: 130px; " alt=""  />
+											<span class="dot" style="margin-top: 112px;margin-right: 12px;padding: 3px;">#1</span></span>
+											<h4 style="color: gray">Followers:</h4>
+											<h1 style="margin-top: -7px;color: black">890765</h1>
+											<h2 style="margin-top: -6px;color: black">Hussain Ali</h2>
+											   <h5 style="color: black"><i>Lorem ipsum dolor sit ame, consectetur adipiscing</i></h5>
 											</li>
 											
 											
@@ -156,52 +181,14 @@ h5{
 				
 									</div>
 								</div>
-		<h5 style="color:black"><i><%= topsss.comment %></i></h5><br><br>
-		<p><span style="color: black"><%= topsss.users %></span></p>					
-<br><br>
 								
 							</div>
 						</div>
 				    </a>
 				</aside>
 			</div>
-			<% }) %>
-			<!-- ------------------------------------------------------------------- -->
-        <!--   <div class="col-md-12">
-				<aside>
-                    <a href="">
-						<div class="product-tab" style="width: 150%;">
-					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
-<span style="color: black; font-size: 22px;">🍳Breakfast w/ Champions 💰The Millionaire Breakfast Club</span>
- 
-								<div id="recent" class="tab-pane fade in active">
-	
-									<div class="tab-recent" id="tab-recent">
-										<ul style="text-decoration: none;list-style: none;">
-				<li><span style="margin-top: 10px;">
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
+		</div><br> -->
 
-											</span>
-											</li>
-											
-											
-										</ul>
-				
-									</div>
-								</div>
-		<span style="color:black"><i>Glenn Lundy,LIZZA MONET MORALES,Scott Simons,William Tong,The Joint Venture Expert,Chris Winfield,</i></span>
-		<p><span>12345</span><i class="fas fa-user"></i> / <span>666</span><i class="fas fa-comment"></i>					
-<br><br>
-								
-							</div>
-						</div>
-				    </a>
-				</aside>
-			</div> -->
-			<!-- ------------------------------------------------------------------- -->
-		</div><br>
 
 	</div>
 
@@ -237,9 +224,6 @@ h5{
 <!-- SLIDER REVOLUTION -->
 <script type="text/javascript" src="js/jquery.themepunch.plugins.min.js"></script>
 <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
- <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
 <script type="text/javascript">
@@ -291,27 +275,15 @@ h5{
 	});
 
 
-</script>	
+</script>
+
 <!-- <script type="text/javascript">
-	setTimeout(function() {
-  location.reload();
-}, 30000);
+function load()
+{
+setTimeout("window.open(self.location, '_self');", 3000);
+}
 </script> -->
 
-<script>
-	function RussiaRoom(){
-    var ajax =new XMLHttpRequest();
-    ajax.open("GET","/rooms/russia-room",true);
-    ajax.onreadystatechange = function(){
-      if(this.readyState == 4 && this.status== 200){
-        var response = JSON.parse(this.responseText);
-      }
-    };
-    var formData = new FormData();
-    ajax.send(formData);
-    return false;
-}
-</script>
 
 </body>
 

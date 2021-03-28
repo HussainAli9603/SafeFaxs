@@ -2,9 +2,10 @@
 
 <!-- Mirrored from themes.webinane.com/ducan/blog2.html by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 11 Dec 2014 06:22:18 GMT -->
 <head>
+	<meta http-equiv="refresh" content=""/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ducan - Blog2 Page</title>
+<title>Club-Events</title>
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 
@@ -34,6 +35,8 @@
 <link rel="alternate stylesheet" type="text/css" href="css/grunge.css" title="grunge"/> <!-- Grunge -->
 <link rel="alternate stylesheet" type="text/css" href="css/brown.css" title="brown"/> <!-- Brown -->
 
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 </head>
 
 <style>
@@ -49,6 +52,13 @@
 .active {
 	text-decoration:underline;
 }
+h5{
+    display: inline-block;
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
 </style>
 
 
@@ -61,11 +71,11 @@
 			<div class="menu">
 				<ul>
 					<li><a href="/" title=""><img src="images/logos.PNG" style="margin-top: -18px"></a></li>
-					<li><a href="blog2.html" title="">Top-50 World</a></li>
-					<li><a href="blog.html" title="">Top-250 Russia</a></li>
-					<li><a href="blog3.html" title="">Top-250 Italy</a></li>
-					<li><a href="rooms.html" title="">Room</a></li>
-					<li><a href="#" title="" class="active">Events</a></li>
+					<li><a href="/top-worlds" title="">Top-50 World</a></li>
+					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
+					<li><a href="/rooms" title="">Room</a></li>
+					<li><a href="/events" title="" class="active">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 				</ul>
@@ -90,12 +100,11 @@
 		<div class="responsive-menu">
 				<a class="menu-dropdown-btn" title="">MENU <i class="fa fa-align-justify"></i></a>
 			<ul>
-				<li><a href="#" title="">Top-50 World</a></li>
-					
-					<li><a href="#" title="">Top-250 Russia</a></li>
-					<li><a href="#" title="">Top-250 Italy</a></li>
-					<li><a href="#" title="">Room</a></li>
-					<li><a href="#" title="">Events</a></li>
+				<li><a href="/top-worlds" title="">Top-50 World</a></li>
+					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
+					<li><a href="/rooms" title="">Room</a></li>
+					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 			</ul>
@@ -106,30 +115,42 @@
 
 <section class="block" style="margin-top: -24px">
 	<div class="container">
-<p style="font-size: 30px">Events: <span style="color: gray">upcoming in the World</span><br><i style="font-size: 16px;color: Black">Location:<select>
-	                                   <option>World</option>
-	                                   <option>Russia</option>
-	                                   <option>Italy</option>
-                                    </select></i></p>
+<p style="font-size: 30px">Events:<span style="color: gray">Upcomming in the World</span><br><i style="font-size: 16px;color: Black">
+	                               
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Location
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/events">World</a>
+            <a class="dropdown-item" href="/events-russia">Russia</a>
+            <a class="dropdown-item" href="#">Italy</a>
+        </div>
+    </div>
+                                </p>
+
+		<!-- ------------------------------------------------------------------------------ -->
 		
 		<div class="row black" style="border-botto: 1px solid #86BE99">
+			<% if(topss != "" && topss != null){ %>
+				<% topss.forEach(function(topsss){ %>
 			<div class="col-md-12">
 				<aside>
-                    <a href="">
+                    <a href="/events/<%= topsss.id %>">
 						<div class="product-tab" style="width: 150%;">
 
 					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
-						<p style="color: gray; font-weight: 700"><span>2 / 4 / 2345</span>&nbsp;22:22</p>
-<span style="color: black; font-size: 22px;">🍳Breakfast w/ Champions 💰The Millionaire Breakfast Club</span>
+						<p style="color: gray; font-weight: 700"><span><%= topsss.time %></span></p>
+<span style="color: black; font-size: 22px;"><%= topsss.name %></span>
  
-								<div id="recent" class="tab-pane fade in active">
+								<div id="recent" class="tab-pane in active">
 	
 									<div class="tab-recent" id="tab-recent">
 										<ul style="text-decoration: none;list-style: none;">
 				<li><span style="margin-top: 10px;">
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
+					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
+					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
+					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
 
 											</span>
 											</li>
@@ -139,7 +160,8 @@
 				
 									</div>
 								</div>
-		<span style="color:black"><i>Glenn Lundy,LIZZA MONET MORALES,Scott Simons,William Tong,The Joint Venture Expert,Chris Winfield,</i></span>
+		<span style="color:black"><i><%= topsss.users %></i></span><br><br>
+		<h5 style="color: gray"><%= topsss.bio %></h5>
 							
 <br><br>
 								
@@ -148,43 +170,10 @@
 				    </a>
 				</aside>
 			</div>
-			<!-- ------------------------------------------------------------------- -->
-             	<div class="row black" style="border-botto: 1px solid #86BE99">
-			<div class="col-md-12">
-				<aside>
-                    <a href="">
-						<div class="product-tab" style="width: 150%;">
-
-					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
-						<p style="color: gray; font-weight: 700"><span>2 / 4 / 2345</span>&nbsp;22:22</p>
-<span style="color: black; font-size: 22px;">🍳Breakfast w/ Champions 💰The Millionaire Breakfast Club</span>
- 
-								<div id="recent" class="tab-pane fade in active">
-	
-									<div class="tab-recent" id="tab-recent">
-										<ul style="text-decoration: none;list-style: none;">
-				<li><span style="margin-top: 10px;">
-					<img src="images/product-tab.jpg" style="border-radius: 33px;margin-left: -45px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-
-											</span>
-											</li>
-											
-											
-										</ul>
-				
-									</div>
-								</div>
-		<span style="color:black"><i>Glenn Lundy,LIZZA MONET MORALES,Scott Simons,William Tong,The Joint Venture Expert,Chris Winfield,</i></span>
-							
-<br><br>
-								
-							</div>
-						</div>
-				    </a>
-				</aside>
-			</div>
+			<% }) %>
+			<% }else{ %>
+               <h3>Comming Soon</h3>
+			<% } %>
 			<!-- ------------------------------------------------------------------- -->
 		</div><br>
 

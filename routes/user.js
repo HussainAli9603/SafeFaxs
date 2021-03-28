@@ -54,6 +54,39 @@ router.get('/room/russia-rooms',(req,res)=>{
 router.get('/Russia-rooms/:id',(req,res)=>{
    Users.RussiaRoomId(req,res);
 });  
+router.get('/russia-users-detail/:id',(req,res)=>{
+   Users.RussiaRoomUserDetail(req,res);
+});
+
+
+router.get('/events',(req,res)=>{
+   Users.Events(req,res);  
+});
+router.get('/events/:id',(req,res)=>{
+   Users.EventUserDetails(req,res);  
+});
+router.get('/event/user/:id',(req,res)=>{
+   Users.EventOverUserDetails(req,res);  
+});
+
+router.get('/events-russia',(req,res)=>{
+   Users.EventsRussia(req,res);  
+});
+router.get('/events-russia/:id',(req,res)=>{
+   Users.EventRussiaUserDetails(req,res);  
+});
+router.get('/event-russia/user/:id',(req,res)=>{
+   Users.EventRussiaOverUserDetails(req,res);  
+});
+
+
+router.get('/Top-250-italy',(req,res)=>{
+   Users.PostTop250Italy(req,res);
+});
+router.get('/italy-user/:name',(req,res)=>{
+   Users.ItalyUserDetails(req,res);  
+});
+
 
 
 

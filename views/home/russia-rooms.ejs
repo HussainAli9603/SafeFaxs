@@ -2,10 +2,10 @@
 
 <!-- Mirrored from themes.webinane.com/ducan/blog2.html by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 11 Dec 2014 06:22:18 GMT -->
 <head>
-	<meta http-equiv="refresh" content="30"/>
+	<meta http-equiv="refresh" content=""/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Club-Rooms</title>
+<title>Club-RussiaRooms</title>
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 
@@ -34,6 +34,8 @@
 <link rel="alternate stylesheet" type="text/css" href="/css/gray.css" title="gray"/> <!-- Gray -->
 <link rel="alternate stylesheet" type="text/css" href="/css/grunge.css" title="grunge"/> <!-- Grunge -->
 <link rel="alternate stylesheet" type="text/css" href="/css/brown.css" title="brown"/> <!-- Brown -->
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
 
@@ -68,12 +70,12 @@ h5{
 		   <div class="">
 			<div class="menu">
 				<ul>
-					<li><a href="/" title=""><img src="images/logos.PNG" style="margin-top: -18px"></a></li>
-					<li><a href="blog2.html" title="">Top-50 World</a></li>
-					<li><a href="blog.html" title="">Top-250 Russia</a></li>
-					<li><a href="blog3.html" title="">Top-250 Italy</a></li>
-					<li><a href="rooms.html" title="" class="active">Room</a></li>
-					<li><a href="#" title="">Events</a></li>
+					<li><a href="/" title=""><img src="/images/logos.PNG" style="margin-top: -18px"></a></li>
+					<li><a href="/top-worlds" title="">Top-50 World</a></li>
+					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
+					<li><a href="/rooms" title="" class="active">Room</a></li>
+					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 				</ul>
@@ -92,18 +94,17 @@ h5{
 	
 		<Div class="logo">
 			<a href="index.html" title="">
-				<img src="images/logos.PNG" style="margin-top: -18px">
+				<img src="/images/logos.PNG" style="margin-top: -18px">
 			</a>
 		</div>
 		<div class="responsive-menu">
 				<a class="menu-dropdown-btn" title="">MENU <i class="fa fa-align-justify"></i></a>
 			<ul>
-				<li><a href="#" title="">Top-50 World</a></li>
-					
-					<li><a href="#" title="">Top-250 Russia</a></li>
-					<li><a href="#" title="">Top-250 Italy</a></li>
-					<li><a href="#" title="">Room</a></li>
-					<li><a href="#" title="">Events</a></li>
+				<li><a href="/top-worlds" title="">Top-50 World</a></li>
+					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
+					<li><a href="/rooms" title="" class="active">Room</a></li>
+					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 			</ul>
@@ -114,11 +115,17 @@ h5{
 
 <section class="block" style="margin-top: -24px">
 	<div class="container">
-<p style="font-size: 30px">Rooms:<span style="color: gray">popular in the Russia</span><br><i style="font-size: 16px;color: Black">Location:<select>
-	                                   <option>World</option>
-	                                   <option>Russia</option>
-	                                   <option>Italy</option>
-                                    </select></i></p>
+<p style="font-size: 30px">Rooms:<span style="color: gray">popular in the Russia</span><br><i style="font-size: 16px;color: Black">
+ <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Location
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/rooms">World</a>
+            <a class="dropdown-item" href="/room/russia-rooms">Russia</a>
+            <a class="dropdown-item" href="#">Italy</a>
+        </div>
+    </div></p>
 		
 
 		<div class="row black" style="border-botto: 1px solid #86BE99">
@@ -130,13 +137,13 @@ h5{
 					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
 <span style="color: black; font-size: 22px;"><%= topsss.name %></span>
  
-								<div id="recent" class="tab-pane fade in active">
-	                     <input type="hidden" name="roomIdd" value="<%= topsss.id %>">
+								<div id="recent" class="tab-pane  in active">
+	                     <input type="hidden" name="roomIdd" value="<%= topsss.url %>">
 									<div class="tab-recent" id="tab-recent">
 										<ul style="text-decoration: none;list-style: none;">
 				<li><span style="margin-top: 10px;">
 					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
+					<img src="/images/photo4.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
 					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
 
 											</span>
@@ -280,11 +287,11 @@ h5{
 
 
 </script>	
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	setTimeout(function() {
   location.reload();
 }, 30000);
-</script>
+</script> -->
 
 </body>
 

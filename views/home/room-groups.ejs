@@ -69,7 +69,7 @@
 					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
 					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
 					<li><a href="/rooms" title="" class="active">Room</a></li>
-					<li><a href="events.html" title="">Events</a></li>
+					<li><a href="/events" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 				</ul>
@@ -117,7 +117,7 @@
 			  	<h5 style="margin-left: 18px;float: left"><a href="#">🔗 Clubhouse link</a></h5><br><br>
 			  	<h5 style="color: gray; font-size: 22px;">Speakers (<%= top.length %>):</h5><br><br>
 			  	<div class="row">
-
+             <% if(top != "" && top != null){ %>
           <% top.forEach(function(tops){ %>
              
 			  	<div class="col-md-2 col-sm-4">
@@ -133,6 +133,9 @@
 					
 				
 			<% }); %>
+			<% }else{ %>
+                
+			<% } %>
 			  
 					
 				
