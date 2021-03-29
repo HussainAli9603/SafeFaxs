@@ -66,8 +66,8 @@ module.exports = {
  function run () {
    return new Promise(async (resolve, reject) => {
         try {
-           let TopWorld = require("../../models/top-world");
-            const browser = await puppeteer.launch({ headless: true,
+           // let TopWorld = require("../../models/top-world");
+            const browser = await puppeteer.launch({ headless: true, slowMo: -250,
               // args:minimal_args,waitUntil: 'domcontentloaded',ignoreDefaultArgs: ['--disable-extensions'], 
              });
             const newPage = await browser.newPage();
@@ -91,10 +91,12 @@ module.exports = {
                           let bio = await element.$eval('.UserPreview__bio--3bHn0',node => node.innerText.trim());
                           // let url = await element.$eval(a => a.getProperty('href'));
                           TopWorld.findOne({username:username},async function(err,top){
+                            console.log(top)
                             if(top){
                                 top.followers = followers;
                                 top.save();
-                            }else{
+                            }
+                            else{
                                let topWorld = new TopWorld({
                                 username:username,
                                 url:url,
