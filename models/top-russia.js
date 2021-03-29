@@ -22,7 +22,12 @@ let topRussiaSchema = new mongoose.Schema({
     },
     img:{
        type:String
+    },
+     local:{
+       type:String,
+       default:"1"
     }
+   
    
 },{ timestamps: true });
 

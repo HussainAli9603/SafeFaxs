@@ -62,6 +62,7 @@ const headless = process.argv[2] === "headless";
 // ];
 
 module.exports = {
+
   PostTopWorlds:async function(req,res){
  function run () {
    return new Promise(async (resolve, reject) => {
@@ -97,8 +98,10 @@ module.exports = {
                                 top.save();
                             }
                             else{
+                               var oldStr = username;
+                            var newStr = oldStr.substring(1); //remove first character "ello"
                                let topWorld = new TopWorld({
-                                username:username,
+                                username:newStr,
                                 url:url,
                                 rate:rate,
                                 name:name,
@@ -115,12 +118,12 @@ module.exports = {
                        }
                         
                         browser.close();
-                               
-                                   TopWorld.find({},function(err,top){
-                                     res.render('home/top-world',{
-                                      top:top
-                                     })
-                                  })
+                        res.redirect('/top-world')
+                                  //  TopWorld.find({},function(err,top){
+                                  //    res.render('home/top-world',{
+                                  //     top:top
+                                  //    })
+                                  // })
                               
                         
                        // return resolve(urls);
@@ -148,7 +151,8 @@ PostTop250Russia:async function(req,res){
  function run2 () {
    return new Promise(async (resolve, reject) => {
         try {
-           let TopRussia = require("../../models/top-russia");
+           // let TopRussia = require("../../models/top-russia");
+           // var allDelete = await TopRussia.deleteMany({local:1 || ""});
             const browser = await puppeteer.launch({headless: true,});
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
@@ -175,8 +179,10 @@ PostTop250Russia:async function(req,res){
                                 top.followers = followers;
                                 top.save();
                             }else{
+                              var oldStr = username;
+                            var newStr = oldStr.substring(1); //remove first character "ello"
                                let topRussia = new TopRussia({
-                                username:username,
+                                username:newStr,
                                 url:url,
                                 rate:rate,
                                 name:name,
@@ -193,12 +199,13 @@ PostTop250Russia:async function(req,res){
                        }
                         
                         browser.close();
+                        res.redirect('/top-russia')
                                
-                                   TopRussia.find({},function(err,top){
-                                     res.render('home/top-russia',{
-                                      top:top
-                                     })
-                                  })
+                                  //  TopRussia.find({},function(err,top){
+                                  //    res.render('home/top-russia',{
+                                  //     top:top
+                                  //    })
+                                  // })
                               
                         
                        // return resolve(urls);
@@ -1331,7 +1338,7 @@ PostTop250Italy:async function(req,res){
    return new Promise(async (resolve, reject) => {
         try {
            // let TopRussia = require("../../models/top-russia");
-           var allDelete = await TopItaly.deleteMany({local:1 || ""});
+           // var allDelete = await TopItaly.deleteMany({local:1 || ""});
             const browser = await puppeteer.launch({headless: true,});
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
@@ -1356,11 +1363,11 @@ PostTop250Italy:async function(req,res){
                            // console.log(rate)
           
                           // let url = await element.$eval(a => a.getProperty('href'));
-                          // TopItaly.findOne({name:name},async function(err,top){
-                          //   if(top){
-                          //       top.followers = followers;
-                          //       top.save();
-                          //   }else{
+                          TopItaly.findOne({name:name},async function(err,top){
+                            if(top){
+                                top.followers = followers;
+                                top.save();
+                            }else{
                             var oldStr = name;
                             var newStr = oldStr.substring(1); //remove first character "ello"
                                let topItaly = new TopItaly({
@@ -1373,19 +1380,19 @@ PostTop250Italy:async function(req,res){
 
                                console.log(topItaly)
                               await topItaly.save();
-                          //   }
-                          // })
+                            }
+                          })
 
                           
                        }
                         
                         browser.close();
-                               
-                                   TopItaly.find({},function(err,top){
-                                     res.render('home/top-italy',{
-                                      top:top
-                                     })
-                                  })
+                                res.redirect('/top-italy')
+                                  //  TopItaly.find({},function(err,top){
+                                  //    res.render('home/top-italy',{
+                                  //     top:top
+                                  //    })
+                                  // })
                               
                         
                        // return resolve(urls);

@@ -7,12 +7,18 @@ var LocalStrategy = require("passport-local");
 let TopWorld = require("../models/top-world");
 let TopRussia = require("../models/top-russia");
 // var timeout = require('connect-timeout')
+let TopItaly = require("../models/top-italy");
 
 var router = express.Router();
 
-// router.get('/top-worlds',(req,res)=>{
-//      res.render('home/top-world')
-// });
+router.get('/top-world',(req,res)=>{
+  TopWorld.find(function(err,top){
+     res.render('home/top-world',{
+      top:top
+     })
+
+  })
+});
 
 router.get('/top-worlds',(req,res)=>{
 	 Users.PostTopWorlds(req,res);
@@ -24,6 +30,17 @@ router.get('/Users/:username',(req,res)=>{
        });
 
      })
+});
+
+
+
+router.get('/top-russia',(req,res)=>{
+  TopRussia.find(function(err,top){
+     res.render('home/top-russia',{
+      top:top
+     })
+
+  })
 });
 router.get('/Top-250-russia',(req,res)=>{
    Users.PostTop250Russia(req,res);
@@ -79,6 +96,16 @@ router.get('/event-russia/user/:id',(req,res)=>{
    Users.EventRussiaOverUserDetails(req,res);  
 });
 
+
+
+
+router.get('/top-italy',(req,res)=>{
+  TopItaly.find(function(err,top){
+     res.render('home/top-italy',{
+      top:top
+     })
+  })
+});
 
 router.get('/Top-250-italy',(req,res)=>{
    Users.PostTop250Italy(req,res);

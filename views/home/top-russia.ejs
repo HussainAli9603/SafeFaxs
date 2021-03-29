@@ -141,7 +141,7 @@ h5{
 													<h4 style="color: gray">Followers:</h4>
 													<h1 style="margin-top: -7px;color: black"><%= tops.followers%></h1>
 													<h2 style="margin-top: -6px;color: gray">
-												<%= tops.username %><span style="color: black"><%= tops.name %></span></h2>
+												@<%= tops.username %><span style="color: black"><%= tops.name %></span></h2>
 													   <h5 style="color: black"><i><%= tops.bio %></i></h5>
 													</li>
 													
@@ -278,11 +278,13 @@ h5{
 </script>
 
 <script type="text/javascript">
-function load()
-{
-setTimeout("window.open(self.location, '_self');", 3000);
-}
-</script>
+	function sayHi(phrase, who) {
+     // alert('location.href = "http://localhost:9000/top-world"');
+     window.location = "/Top-250-russia"; 
+   }
+setTimeout(sayHi, 50000); // Hello, John
+  
+</script>	
 
 
 </body>

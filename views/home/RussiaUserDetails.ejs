@@ -126,11 +126,11 @@ anonymous">
 								<div id="recent" class="tab-pane  in active">
 									<div class="tab-recent" id="tab-recent">
 										<ul style="text-decoration: none;list-style: none;">
-											<li><span><img src="<%= tops.img1  %>" style="border-radius: 33px; width:130px;height: 130px; " alt=""  />
+											<li><span><img src="<%= tops.img  %>" style="border-radius: 33px; width:130px;height: 130px; " alt=""  />
 											
 											<h4 style="color: gray">Followers:</h4>
 											<h1 style="margin-top: 4px;color: black;font-size: 46px"><%= tops.followers %></h1>
-											<h1 style="margin-top: 4px;color: gray;font-size: 39px"><%= tops.username %><span style="color: black">
+											<h1 style="margin-top: 4px;color: gray;font-size: 39px">@<%= tops.username %><span style="color: black">
 												<%= tops.name %></span></h1>
 											
 											</li>
@@ -156,7 +156,7 @@ anonymous">
 				<div class="col-md-2">
 				<a href="https://www.twitter.com/<%= tops.username %>" style="color:black;text-decoration: underline;"><h3>Twitter</h3></a></div></div>
 				<br>
-				<h5><%= tops.userDetail %></h5>
+				<h5><%= tops.bio %></h5>
 					    </div>
 
 					    <% }else{ %>
