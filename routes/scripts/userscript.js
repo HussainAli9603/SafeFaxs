@@ -116,9 +116,10 @@ module.exports = {
 
                           // await element.waitFor(5000);
                        }
+                         res.redirect('/top-world')
                         
                         browser.close();
-                        res.redirect('/top-world')
+                        // res.redirect('/top-world')
                                   //  TopWorld.find({},function(err,top){
                                   //    res.render('home/top-world',{
                                   //     top:top
