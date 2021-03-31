@@ -17,12 +17,14 @@ let EventsRussia = require("../models/eventRussia");
 var router = express.Router();
 
 router.get('/top-world',(req,res)=>{
-  TopWorld.find(function(err,top){
+  let top = await TopWorld.find({})/
+  .limit(59);
+  // TopWorld.find(function(err,top){
      res.render('home/top-world',{
-      top:top
+      top
      })
 
-  })
+  // })
 });
 
 router.get('/top-worlds',(req,res)=>{
@@ -119,10 +121,7 @@ router.get('/event/user/:id',(req,res)=>{
 
 router.get('/event-russia',async(req,res)=>{
    let topss = await EventsRussia.find({});
-  // Rooms.find({}).sort('-createdAt').limit('15').then((err,topss)=>{
-    // Rooms.find({},function(err,topss){
        res.render('home/eventRussia',{topss});
-    // });
 });
 router.get('/events-russia',(req,res)=>{
    Users.EventsRussia(req,res);  
