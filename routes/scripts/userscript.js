@@ -231,7 +231,7 @@ Rooms:async function(req,res){
   // slowMo: 250, // slow down by 250ms
    });
                 var allDelete = await Rooms.deleteMany({local:1 || ""});
-                if(allDelete){
+                // if(allDelete){
 
             const newPage = await browser.newPage({headless: true});
             await newPage.setDefaultNavigationTimeout(0);
@@ -278,6 +278,12 @@ Rooms:async function(req,res){
                           //       top.users = users;
                           //       top.save();
                           //   }else{
+                             // let url = await element.$eval(a => a.getProperty('href'));
+                          Rooms.findOne({name:name},async function(err,top){
+                            
+                            if(top){
+                               // res.redirect(`/rooms/${req.params.id}`)
+                            }else{
 
                                const rooms = new Rooms({
                                 url:url,
@@ -291,49 +297,50 @@ Rooms:async function(req,res){
                                // console.log(rooms)
                                await rooms.save();
                            
-                          //   }
-                          // })
-                          }
+                            }
+                          })
+                          // }
                                                      
 
-                       }else{
+                       }
+                       // else{
 
 
-            const newPage = await browser.newPage();
-            await newPage.setDefaultNavigationTimeout(0);
-            await newPage.goto("https://clubhouseranking.net/rooms",{waitUntil: 'networkidle0'});
+            // const newPage = await browser.newPage();
+            // await newPage.setDefaultNavigationTimeout(0);
+            // await newPage.goto("https://clubhouseranking.net/rooms",{waitUntil: 'networkidle0'});
 
-              images = [];
-              const items = await newPage.$$('a.Channels__channelPreview--16gYL');
-              // const image = await newPage.$$('div.ChannelPreview__hostsAvatars--3Lt_o');
+            //   images = [];
+            //   const items = await newPage.$$('a.Channels__channelPreview--16gYL');
+            //   // const image = await newPage.$$('div.ChannelPreview__hostsAvatars--3Lt_o');
               
               
-                 for(let element of items){
+            //      for(let element of items){
                    
 
-                      // for (let i = 0; i < image.length; i++) { 
-                  // console.log(element)
-                        // let url = await element.$eval(href);
-                          const handle = await element.$('selector');
-                          const url = await element.evaluate(anchor => anchor.getAttribute('href'), handle);
-                          const name = await element.$eval('.ChannelPreview__name--3BXVF',node4 => node4.innerText.trim());
+            //           // for (let i = 0; i < image.length; i++) { 
+            //       // console.log(element)
+            //             // let url = await element.$eval(href);
+            //               const handle = await element.$('selector');
+            //               const url = await element.evaluate(anchor => anchor.getAttribute('href'), handle);
+            //               const name = await element.$eval('.ChannelPreview__name--3BXVF',node4 => node4.innerText.trim());
                         
-                          const users = await element.$eval('.ChannelPreview__users--2YJjN',node3 => node3.innerText.trim());
-                          const comment = await element.$eval('div',node => node.innerText.trim());
+            //               const users = await element.$eval('.ChannelPreview__users--2YJjN',node3 => node3.innerText.trim());
+            //               const comment = await element.$eval('div',node => node.innerText.trim());
                          
-                            // console.log(comment)
-                            // console.log(users)
-                   const img1 = await element.$eval('img',image => image.src);
+            //                 // console.log(comment)
+            //                 // console.log(users)
+            //        const img1 = await element.$eval('img',image => image.src);
 
-                // const issueSrcs = await element.$eval('img',imgs => {
-                // const srcs =  Array.from("img").map(
-                //   (image) => image.src);
-                // // images.push(srcs)
-                // console.log(srcs)
-                //   return srcs;
-                //   images.push(srcs)
-                // }); 
-                // console.log(issueSrcs)
+            //     // const issueSrcs = await element.$eval('img',imgs => {
+            //     // const srcs =  Array.from("img").map(
+            //     //   (image) => image.src);
+            //     // // images.push(srcs)
+            //     // console.log(srcs)
+            //     //   return srcs;
+            //     //   images.push(srcs)
+            //     // }); 
+            //     // console.log(issueSrcs)
 
 
         // var img1 =  await element.$eval('img',node1 => node1.src);                             
@@ -347,33 +354,34 @@ Rooms:async function(req,res){
                           //       top.save();
                           //   }else{
 
-                               const rooms = new Rooms({
-                                url:url,
-                                name:name,
-                                users:users,
-                                comment:comment,
-                                img1:img1,
+                               // const rooms = new Rooms({
+                               //  url:url,
+                               //  name:name,
+                               //  users:users,
+                               //  comment:comment,
+                               //  img1:img1,
                                 // img2:img2,
 
-                                 });
+                                 // });
                                // console.log(rooms)
-                               await rooms.save();
+                               // await rooms.save();
                            
                           //   }
                           // })
                           // }
                                                      
-                       }
-                         }
+                       // }
+                         // }
                             
                               
                         browser.close();
-                          await Rooms.find({},function(err,topss){//.sort('-createdAt')
-                          console.log(topss)
-                                     res.render('home/rooms',{
-                                      topss:topss,
-                                     })
-                                  })
+                        res.redirect('/room');
+                          // await Rooms.find({},function(err,topss){//.sort('-createdAt')
+                          // console.log(topss)
+                          //            res.render('home/rooms',{
+                          //             topss:topss,
+                          //            })
+                          //         })
                         
                         // return resolve(top);
                    }catch(e){
@@ -465,27 +473,23 @@ RoomId:async function(req,res){
                      //   // res.redirect('/rooms')
                      //   console.log('Error')
                      // }
-                      await RoomId.find({room:req.params.id},async function(err,top){
-                          // await Rooms.findOne({_id:req.params.id},function(roomId){
 
-                          console.log(top)
-                                     return res.render('home/room-groups',{
-                                      top:top,
-                                      // roomId:roomId
-                                   })
-                                // })
-                              })      
+                      // await RoomId.find({room:req.params.id},async function(err,top){
+                      //     // await Rooms.findOne({_id:req.params.id},function(roomId){
+
+                      //     console.log(top)
+                      //                return res.render('home/room-groups',{
+                      //                 top:top,
+                      //                 // roomId:roomId
+                      //              })
+                      //           // })
+                      //         }) 
+
                         browser.close();
+                        res.redirect(`/room/${req.params.id}`)
 
                       })
-
-                        
-                         
-                            
-                       
-                        
-                                  
-                        
+                     
                   
                        return resolve();
                    }catch(e){
@@ -615,7 +619,7 @@ RussiaRoomss:async function(req,res){
     function run6 () {
       return new Promise(async (resolve, reject) => {
         try {
-           let RussiaRooms = require("../../models/Russiarooms");
+           // let RussiaRooms = require("../../models/Russiarooms");
             const browser = await puppeteer.launch({headless: true,
    // slowMo: 250, // slow down by 250ms
     });
@@ -757,12 +761,13 @@ RussiaRoomss:async function(req,res){
                             
                               
                         browser.close();
-                          await RussiaRooms.find({},function(err,topss){//.sort('-createdAt')
-                          console.log(topss)
-                                     res.render('home/russia-rooms',{
-                                      topss:topss,
-                                     })
-                                  })
+                        res.redirect('/russia-room')
+                          // await RussiaRooms.find({},function(err,topss){//.sort('-createdAt')
+                          // console.log(topss)
+                          //            res.render('home/russia-rooms',{
+                          //             topss:topss,
+                          //            })
+                          //         })
                         
                         // return resolve(top);
                    }catch(e){
@@ -1119,12 +1124,13 @@ Events:async function(req,res){
                             
                               
                         browser.close();
-                          await Events.find({},function(err,topss){//.sort('-createdAt')
-                          console.log(topss)
-                                     res.render('home/events',{
-                                      topss:topss,
-                                     })
-                                  })
+                        res.redirect('/event')
+                          // await Events.find({},function(err,topss){//.sort('-createdAt')
+                          // console.log(topss)
+                          //            res.render('home/events',{
+                          //             topss:topss,
+                          //            })
+                          //         })
                         
                         // return resolve(top);
                    }catch(e){
@@ -1300,12 +1306,13 @@ EventsRussia:async function(req,res){
                             
                               
                         browser.close();
-                          await EventsRussia.find({},function(err,topss){//.sort('-createdAt')
-                          console.log(topss)
-                                     res.render('home/eventRussia',{
-                                      topss:topss,
-                                     })
-                                  })
+                        res.redirect('/event-russia')
+                          // await EventsRussia.find({},function(err,topss){//.sort('-createdAt')
+                          // console.log(topss)
+                          //            res.render('home/eventRussia',{
+                          //             topss:topss,
+                          //            })
+                          //         })
                         
                         // return resolve(top);
                    }catch(e){

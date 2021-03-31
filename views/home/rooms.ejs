@@ -71,11 +71,11 @@ h5{
 			<div class="menu">
 				<ul>
 					<li><a href="/" title=""><img src="images/logos.PNG" style="margin-top: -18px"></a></li>
-					<li><a href="/top-worlds" title="">Top-50 World</a></li>
-					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
-					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="" class="active">Room</a></li>
-					<li><a href="/events" title="">Events</a></li>
+					<li><a href="/top-world" title="">Top-50 World</a></li>
+					<li><a href="/top-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/top-italy" title="">Top-250 Italy</a></li>
+					<li><a href="/room" title="" class="active">Room</a></li>
+					<li><a href="/event" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 				</ul>
@@ -100,11 +100,11 @@ h5{
 		<div class="responsive-menu">
 				<a class="menu-dropdown-btn" title="">MENU <i class="fa fa-align-justify"></i></a>
 			<ul>
-				<li><a href="/top-worlds" title="">Top-50 World</a></li>
-					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
-					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="" class="active">Room</a></li>
-					<li><a href="/events" title="">Events</a></li>
+				<li><a href="/top-world" title="">Top-50 World</a></li>
+					<li><a href="/top-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/top-italy" title="">Top-250 Italy</a></li>
+					<li><a href="/room" title="" class="active">Room</a></li>
+					<li><a href="/event" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 			</ul>
@@ -123,7 +123,7 @@ h5{
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/rooms">World</a>
-            <a class="dropdown-item" href="/room/russia-rooms">Russia</a>
+            <a class="dropdown-item" href="/russia-room">Russia</a>
             <a class="dropdown-item" href="#">Italy</a>
         </div>
     </div>
@@ -134,7 +134,7 @@ h5{
 			<% topss.forEach(function(topsss){ %>
 			<div class="col-md-12">
 				<aside>
-                    <a href="/rooms/<%= topsss.id %>" id="btn">
+                    <a href="/room/<%= topsss.id %>" id="btn">
 						<div class="product-tab" style="width: 150%;">
 					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
 <span style="color: black; font-size: 22px;"><%= topsss.name %></span>
@@ -292,27 +292,24 @@ h5{
 
 
 </script>	
-<!-- <script type="text/javascript">
-	setTimeout(function() {
-  location.reload();
-}, 30000);
-</script> -->
 
-<!-- <script>
-	function RussiaRoom(){
-    var ajax =new XMLHttpRequest();
-    ajax.open("GET","/rooms/russia-room",true);
-    ajax.onreadystatechange = function(){
-      if(this.readyState == 4 && this.status== 200){
-        var response = JSON.parse(this.responseText);
-      }
-    };
-    var formData = new FormData();
-    ajax.send(formData);
-    return false;
-}
+<script type="text/javascript">
+	function sayHi(phrase, who) {
+     // alert('location.href = "http://localhost:9000/top-world"');
+     window.location = "/rooms"; 
+   }
+setTimeout(sayHi, 30000); // Hello, John
+  
 </script>
- -->
+<script type="text/javascript">
+	function sayHii(phrase, who) {
+     // alert('location.href = "http://localhost:9000/top-world"');
+     window.location = "/room"; 
+   }
+setTimeout(sayHii, 32000); // Hello, John
+
+</script>
+
 </body>
 
 <!-- Mirrored from themes.webinane.com/ducan/blog2.html by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 11 Dec 2014 06:22:28 GMT -->

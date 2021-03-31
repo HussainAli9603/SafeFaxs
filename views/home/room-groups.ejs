@@ -65,11 +65,11 @@
 			<div class="menu">
 				<ul>
 					<li><a href="/" title=""><img src="/images/logos.PNG" style="margin-top: -18px"></a></li>
-					<li><a href="/top-worlds" title="">Top-50 World</a></li>
-					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
-					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="" class="active">Room</a></li>
-					<li><a href="/events" title="">Events</a></li>
+					<li><a href="/top-world" title="">Top-50 World</a></li>
+					<li><a href="/top-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/top-italy" title="">Top-250 Italy</a></li>
+					<li><a href="/room" title="" class="active">Room</a></li>
+					<li><a href="/event" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 				</ul>
@@ -94,12 +94,12 @@
 		<div class="responsive-menu">
 				<a class="menu-dropdown-btn" title="">MENU <i class="fa fa-align-justify"></i></a>
 			<ul>
-				<li><a href="/top-worlds" title="">Top-50 World</a></li>
+				<li><a href="/top-world" title="">Top-50 World</a></li>
 					
-					<li><a href="/Top-250-russia" title="">Top-250 Russia</a></li>
-					<li><a href="/Top-250-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/rooms" title="">Room</a></li>
-					<li><a href="#" title="">Events</a></li>
+					<li><a href="/top-russia" title="">Top-250 Russia</a></li>
+					<li><a href="/top-italy" title="">Top-250 Italy</a></li>
+					<li><a href="/room" title="">Room</a></li>
+					<li><a href="/event" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 			</ul>
@@ -115,6 +115,7 @@
 			  <div class="card-body">
 			  		<h2 style="color: black; font-size: 22px; margin-left:13px "></h2><br>
 			  	<h5 style="margin-left: 18px;float: left"><a href="#">🔗 Clubhouse link</a></h5><br><br>
+			  		<input type="text" id="id" value="<%= top.id %>">
 			  	<h5 style="color: gray; font-size: 22px;">Speakers (<%= top.length %>):</h5><br><br>
 			  	<div class="row">
              <% if(top != "" && top != null){ %>
@@ -125,6 +126,7 @@
 			     <span style="margin-top: 10px;">
 					<img src="<%= tops.img1 %>" style="border-radius: 33px; width:80px;height: 80px; " alt=""  />
 					</span>
+				
 					<a href="/users-detail/<%= tops.id %>">
 					<span><h5 style="color: black; font-family: 600"><%= tops.name %></h5></span>
 					<span><h5 style="color: gray;"><%= tops.username %></h5></span>
@@ -232,11 +234,24 @@
 
 </script>
 
-<!-- <script type="text/javascript">
-	$("#btn").click(function(){
-  location.reload(true);
-});
-</script> -->	
+<script type="text/javascript">
+	var _id = self.getAttribute("data-id");
+	function sayHi(phrase, who) {
+     // alert('location.href = "http://localhost:9000/top-world"');
+     window.location = "/rooms/"+_id; 
+   }
+setTimeout(sayHi, 30000); // Hello, John
+  
+</script>
+<script type="text/javascript">
+	function sayHii(phrase, who) {
+     // alert('location.href = "http://localhost:9000/top-world"');
+     var _id = self.getAttribute("id");
+    window.location = "/room/"+_id;  
+   }
+setTimeout(sayHii, 32000); // Hello, John
+
+</script>	
 
 </body>
 

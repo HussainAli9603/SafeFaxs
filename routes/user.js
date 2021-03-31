@@ -8,6 +8,11 @@ let TopWorld = require("../models/top-world");
 let TopRussia = require("../models/top-russia");
 // var timeout = require('connect-timeout')
 let TopItaly = require("../models/top-italy");
+let Rooms = require("../models/rooms");
+let RoomId = require("../models/roomId");
+let RussiaRooms = require("../models/Russiarooms");
+let Events = require("../models/events");
+let EventsRussia = require("../models/eventRussia");
 
 var router = express.Router();
 
@@ -54,8 +59,19 @@ router.get('/user/:username',(req,res)=>{
      })
 });
 
+router.get('/room',async(req,res)=>{
+   let topss = await Rooms.find({});
+  // Rooms.find({}).sort('-createdAt').limit('15').then((err,topss)=>{
+    // Rooms.find({},function(err,topss){
+       res.render('home/rooms',{topss});
+    // });
+});
 router.get('/rooms',(req,res)=>{
    Users.Rooms(req,res);
+});
+router.get('/room/:id',async(req,res)=>{
+   let top = await RoomId.find({_id:req.params.id});
+       res.render('home/room-groups',{top});
 }); 
 router.get('/rooms/:id',(req,res)=>{
    Users.RoomId(req,res);
@@ -65,9 +81,17 @@ router.get('/users-detail/:id',(req,res)=>{
 });
 
 
+router.get('/russia-room',async(req,res)=>{
+   let topss = await RussiaRooms.find({});
+  // Rooms.find({}).sort('-createdAt').limit('15').then((err,topss)=>{
+    // Rooms.find({},function(err,topss){
+       res.render('home/russia-rooms',{topss});
+    // });
+});
 router.get('/room/russia-rooms',(req,res)=>{
    Users.RussiaRoomss(req,res);  
 });
+
 router.get('/Russia-rooms/:id',(req,res)=>{
    Users.RussiaRoomId(req,res);
 });  
@@ -75,7 +99,13 @@ router.get('/russia-users-detail/:id',(req,res)=>{
    Users.RussiaRoomUserDetail(req,res);
 });
 
-
+router.get('/event',async(req,res)=>{
+   let topss = await Events.find({});
+  // Rooms.find({}).sort('-createdAt').limit('15').then((err,topss)=>{
+    // Rooms.find({},function(err,topss){
+       res.render('home/events',{topss});
+    // });
+});
 router.get('/events',(req,res)=>{
    Users.Events(req,res);  
 });
@@ -86,6 +116,14 @@ router.get('/event/user/:id',(req,res)=>{
    Users.EventOverUserDetails(req,res);  
 });
 
+
+router.get('/event-russia',async(req,res)=>{
+   let topss = await EventsRussia.find({});
+  // Rooms.find({}).sort('-createdAt').limit('15').then((err,topss)=>{
+    // Rooms.find({},function(err,topss){
+       res.render('home/eventRussia',{topss});
+    // });
+});
 router.get('/events-russia',(req,res)=>{
    Users.EventsRussia(req,res);  
 });
