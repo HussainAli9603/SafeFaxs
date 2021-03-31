@@ -16,7 +16,7 @@ let EventsRussia = require("../models/eventRussia");
 
 var router = express.Router();
 
-router.get('/top-world',(req,res)=>{
+router.get('/top-world',async(req,res)=>{
   let top = await TopWorld.find({})/
   .limit(59);
   // TopWorld.find(function(err,top){
