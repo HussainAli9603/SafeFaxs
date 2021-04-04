@@ -34,6 +34,7 @@ module.exports = {
             const browser = await puppeteer.launch({ headless: true, slowMo: -250,
               // args:minimal_args,waitUntil: 'domcontentloaded',ignoreDefaultArgs: ['--disable-extensions'], 
              });
+            var allDelete = await TopWorld.deleteMany({local:1 || ""});
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
             // await newPage.waitFor(5000); 
@@ -112,19 +113,20 @@ run()
 
  // -------------------------------------------------------------------------------
 PostTop250Russia:async function(req,res){
+
  function run2 () {
    return new Promise(async (resolve, reject) => {
         try {
            // let TopRussia = require("../../models/top-russia");
-           // var allDelete = await TopRussia.deleteMany({local:1 || ""});
-            const browser = await puppeteer.launch({headless: true,});
+           var allDelete = await TopRussia.deleteMany({local:1 || ""});
+            const browser = await puppeteer.launch({headless: true,slowMo: -250});
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
             await newPage.goto("https://clubhouseranking.net/top-russia");
 
               let results = [];
                 let items = await newPage.$$('.RankingTopRussia__userPreview--3lqdv');
-              
+                console.log(items)
                  for(let element of items){
                         let username = await element.$eval('.UserPreview__username--2tKrj',node5 => node5.innerText.trim());
                         
@@ -193,7 +195,7 @@ Rooms:async function(req,res){
             const browser = await puppeteer.launch({headless: true,
   // slowMo: 250, // slow down by 250ms
    });
-                var allDelete = await Rooms.deleteMany({local:1 || ""});
+                // var allDelete = await Rooms.deleteMany({local:1 || ""});
                 // if(allDelete){
 
             const newPage = await browser.newPage({headless: true});
@@ -383,9 +385,9 @@ RoomId:async function(req,res){
               const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
            var page =  await newPage.goto(`https://clubhouseranking.net${roomid.url}`,{waitUntil: 'networkidle0'});
-
-              const items = await newPage.$$('a.Channel__user--fJO2j');  
-              console.log(items)
+             // console.log(page)
+              const items = await newPage.$$('a.Channel__user--fJO2j'); 
+              console.log(items) 
               // var allDelete = await RoomId.deleteMany({local:1})
                  for(let element of items){
                      // console.log(element)
@@ -578,17 +580,17 @@ run5()
 
 // -=-=-=-=-=-=-=-==-=-=-=--===--=-=-=-=-=-=-=-=-=-------==-===-=-==-=-==-=-==-=-=-=
 
-RussiaRoomss:async function(req,res){
-    function run6 () {
+RussiaRoomssss:async function(req,res){
+  console.log("hi")
+function run6 () {
       return new Promise(async (resolve, reject) => {
         try {
            // let RussiaRooms = require("../../models/Russiarooms");
             const browser = await puppeteer.launch({headless: true,
    // slowMo: 250, // slow down by 250ms
     });
-                var allDelete = await RussiaRooms.deleteMany({local:1 || ""});
-                if(allDelete == undefined || allDelete == ""){
-
+              
+                   // var allDelete = await RussiaRooms.deleteMany({local:1})
             const newPage = await browser.newPage();
             await newPage.setDefaultNavigationTimeout(0);
             await newPage.goto("https://clubhouseranking.net/rooms?country_code=ru",{waitUntil: 'networkidle0'});
@@ -601,10 +603,6 @@ RussiaRoomss:async function(req,res){
               
                  for(let element of items){
                    
-
-                      // for (let i = 0; i < image.length; i++) { 
-                  // console.log(element)
-                        // let url = await element.$eval(href);
                           const handle = await element.$('selector');
                           const url = await element.evaluate(anchor => anchor.getAttribute('href'), handle);
                           const name = await element.$eval('.ChannelPreview__name--3BXVF',node4 => node4.innerText.trim());
@@ -616,27 +614,6 @@ RussiaRoomss:async function(req,res){
                             // console.log(users)
                    const img1 = await element.$eval('img',image => image.src);
 
-                // const issueSrcs = await element.$eval('img',imgs => {
-                // const srcs =  Array.from("img").map(
-                //   (image) => image.src);
-                // // images.push(srcs)
-                // console.log(srcs)
-                //   return srcs;
-                //   images.push(srcs)
-                // }); 
-                // console.log(issueSrcs)
-
-
-        // var img1 =  await element.$eval('img',node1 => node1.src);                             
-                         
-                         // var img2 =  await element.$eval('.ChannelPreview__hostAvatar--PsdaI',node2 => node2.src);                             
-                          
-                          // let url = await element.$eval(a => a.getProperty('href'));
-                          // Rooms.deleteMany({local:1}).then(async(err,result)=>{
-                          //   if(top){
-                          //       top.users = users;
-                          //       top.save();
-                          //   }else{
 
                                const rooms = new RussiaRooms({
                                 url:url,
@@ -652,75 +629,10 @@ RussiaRoomss:async function(req,res){
                            
                           //   }
                           // })
-                          }
+                          // }
                                                      
 
-                       }else{
-
-                            const newPage = await browser.newPage();
-            await newPage.setDefaultNavigationTimeout(0);
-            await newPage.goto("https://clubhouseranking.net/rooms?country_code=ru",{waitUntil: 'networkidle0'});
-
-              images = [];
-              const items = await newPage.$$('a.Channels__channelPreview--16gYL');
-              // const image = await newPage.$$('div.ChannelPreview__hostsAvatars--3Lt_o');
-              
-              
-                 for(let element of items){
-                   
-
-                      // for (let i = 0; i < image.length; i++) { 
-                  // console.log(element)
-                        // let url = await element.$eval(href);
-                          const handle = await element.$('selector');
-                          const url = await element.evaluate(anchor => anchor.getAttribute('href'), handle);
-                          const name = await element.$eval('.ChannelPreview__name--3BXVF',node4 => node4.innerText.trim());
-                        
-                          const users = await element.$eval('.ChannelPreview__users--2YJjN',node3 => node3.innerText.trim());
-                          const comment = await element.$eval('div',node => node.innerText.trim());
-                         
-                            // console.log(comment)
-                            // console.log(users)
-                   const img1 = await element.$eval('img',image => image.src);
-
-                // const issueSrcs = await element.$eval('img',imgs => {
-                // const srcs =  Array.from("img").map(
-                //   (image) => image.src);
-                // // images.push(srcs)
-                // console.log(srcs)
-                //   return srcs;
-                //   images.push(srcs)
-                // }); 
-                // console.log(issueSrcs)
-
-
-        // var img1 =  await element.$eval('img',node1 => node1.src);                             
-                         
-                         // var img2 =  await element.$eval('.ChannelPreview__hostAvatar--PsdaI',node2 => node2.src);                             
-                          
-                          // let url = await element.$eval(a => a.getProperty('href'));
-                          // Rooms.deleteMany({local:1}).then(async(err,result)=>{
-                          //   if(top){
-                          //       top.users = users;
-                          //       top.save();
-                          //   }else{
-
-                               const rooms = new RussiaRooms({
-                                url:url,
-                                name:name,
-                                users:users,
-                                comment:comment,
-                                img1:img1,
-                                // img2:img2,
-
-                                 });
-                               // console.log(rooms)
-                               await rooms.save();
-                           
-                          //   }
-                          // })
-                          }
-                         }
+                       }
                             
                               
                         browser.close();
@@ -765,7 +677,8 @@ RussiaRoomId:async function(req,res){
             await newPage.setDefaultNavigationTimeout(0);
            var page =  await newPage.goto(`https://clubhouseranking.net${roomid.url}`);
 
-              const items = await newPage.$$('a.Channel__user--fJO2j');  
+              // console.log(page)
+              const items = await newPage.$$('.Channel__user--fJO2j');  
               console.log(items)
               // var allDelete = await RoomId.deleteMany({local:1})
                  for(let element of items){
@@ -781,10 +694,10 @@ RussiaRoomId:async function(req,res){
                            // console.log(img)
                            // console.log(username)
                           // let url = await element.$eval(a => a.getProperty('href'));
-                          RussiaRoomsId.findOne({name:name},async function(err,top){
-                            if(top){
-                               // res.redirect(`/rooms/${req.params.id}`)
-                            }else{
+                          // RussiaRoomsId.findOne({name:name},async function(err,top){
+                          //   if(top){
+                          //      // res.redirect(`/rooms/${req.params.id}`)
+                          //   }else{
                                let roomId = new RussiaRoomsId({
                                 room:req.params.id,
                                 url:url,
@@ -794,34 +707,24 @@ RussiaRoomId:async function(req,res){
                                  });
                                console.log(roomId)
                               await roomId.save();
-                               if(name.length == 100){
-                                await RussiaRoomsId.find({room:req.params.id},async function(err,top){
-                          // await Rooms.findOne({_id:req.params.id},function(roomId){
-
-                          console.log(top)
-                                     return res.render('home/russia-room-groups',{
-                                      top:top,
-                                      // roomId:roomId
-                                   })
-                                // })
-                              })    
-                            }
-                            }
-                          })
+                              
+                          //   }
+                          // })
                          
                           
                      }
                       
-                        await RussiaRoomsId.find({room:req.params.id},async function(err,top){
-                          // await Rooms.findOne({_id:req.params.id},function(roomId){
-                          console.log(top)
-                                     res.render('home/russia-room-groups',{
-                                      top:top,
-                                      // roomId:roomId
-                                   })
-                                // })
-                              })
+                        // await RussiaRoomsId.find({room:req.params.id},async function(err,top){
+                        //   // await Rooms.findOne({_id:req.params.id},function(roomId){
+                        //   console.log(top)
+                        //              res.render('home/russia-room-groups',{
+                        //               top:top,
+                        //               // roomId:roomId
+                        //            })
+                        //         // })
+                        //       })
                         browser.close();
+                        res.redirect(`/russia-room/${req.params.id}`)
 
                       })
 

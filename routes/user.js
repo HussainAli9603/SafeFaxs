@@ -11,6 +11,7 @@ let TopItaly = require("../models/top-italy");
 let Rooms = require("../models/rooms");
 let RoomId = require("../models/roomId");
 let RussiaRooms = require("../models/Russiarooms");
+let RussiaRoomsId = require("../models/russia-roomId");
 let Events = require("../models/events");
 let EventsRussia = require("../models/eventRussia");
 
@@ -41,13 +42,12 @@ router.get('/Users/:username',(req,res)=>{
 
 
 
-router.get('/top-russia',(req,res)=>{
-  TopRussia.find(function(err,top){
-     res.render('home/top-russia',{
-      top:top
-     })
+router.get('/top-russia',async (req,res)=>{
+  var top = await TopRussia.find({}).limit(250);
+  // TopRussia.find(function(err,top){
+     res.render('home/top-russia',{ top });
 
-  })
+  // })
 });
 router.get('/Top-250-russia',(req,res)=>{
    Users.PostTop250Russia(req,res);
@@ -57,7 +57,6 @@ router.get('/user/:username',(req,res)=>{
        res.render('home/RussiaUserDetails',{
           tops:tops
        });
-
      })
 });
 
@@ -71,10 +70,14 @@ router.get('/room',async(req,res)=>{
 router.get('/rooms',(req,res)=>{
    Users.Rooms(req,res);
 });
+
 router.get('/room/:id',async(req,res)=>{
-   let top = await RoomId.find({_id:req.params.id});
-       res.render('home/room-groups',{top});
+   let top = await RoomId.find({room:req.params.id}).limit(23);
+   let top1 = await RoomId.find({room:req.params.id}).skip(23).limit(167);
+   let top2 = await RoomId.find({room:req.params.id}).skip(167);
+       res.render('home/room-groups',{top,top1,top2});
 }); 
+
 router.get('/rooms/:id',(req,res)=>{
    Users.RoomId(req,res);
 });
@@ -84,17 +87,25 @@ router.get('/users-detail/:id',(req,res)=>{
 
 
 router.get('/russia-room',async(req,res)=>{
-   let topss = await RussiaRooms.find({});
+   let topss = await RussiaRooms.find({}).limit(134);
+   // let image = await RussiaRoomsId.find({room:req.body.id}).limit(4);
+   // console.log(image)
   // Rooms.find({}).sort('-createdAt').limit('15').then((err,topss)=>{
     // Rooms.find({},function(err,topss){
        res.render('home/russia-rooms',{topss});
     // });
 });
-router.get('/room/russia-rooms',(req,res)=>{
-   Users.RussiaRoomss(req,res);  
+router.get('/Russia-rooms',(req,res)=>{
+   Users.RussiaRoomssss(req,res);  
 });
 
-router.get('/Russia-rooms/:id',(req,res)=>{
+router.get('/russia-room/:id',async(req,res)=>{
+   let top = await RussiaRoomsId.find({room:req.params.id}).limit(27);
+   let top1 = await RussiaRoomsId.find({room:req.params.id}).skip(27).limit(189);
+   let top2 = await RussiaRoomsId.find({room:req.params.id}).skip(189);
+       res.render('home/russia-room-groups',{top,top1,top2});
+});
+router.get('/russia-popular-rooms/:id',(req,res)=>{
    Users.RussiaRoomId(req,res);
 });  
 router.get('/russia-users-detail/:id',(req,res)=>{
@@ -144,12 +155,29 @@ router.get('/top-italy',(req,res)=>{
   })
 });
 
+
+router.get('/top-italy-popular-room',async(req,res)=>{
+   let topss = await RussiaRooms.find({}).skip(34).limit(34);
+  // Rooms.find({}).sort('-createdAt').limit('15').then((err,topss)=>{
+    // Rooms.find({},function(err,topss){
+       res.render('home/italy-rooms',{topss});
+    // });
+});
 router.get('/Top-250-italy',(req,res)=>{
    Users.PostTop250Italy(req,res);
 });
+
 router.get('/italy-user/:name',(req,res)=>{
    Users.ItalyUserDetails(req,res);  
 });
+router.get('/italy-users/:name',(req,res)=>{
+  TopItaly.findOne({name:req.params.name},function(err,top){
+     res.render('home/italyUserDetails',{
+      top:top
+     })
+  })
+});
+
 
 
 

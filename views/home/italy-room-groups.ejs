@@ -2,10 +2,9 @@
 
 <!-- Mirrored from themes.webinane.com/ducan/blog2.html by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 11 Dec 2014 06:22:18 GMT -->
 <head>
-	<meta http-equiv="refresh" content=""/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Club-RussiaRooms</title>
+<title>Russia Room Groups</title>
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 
@@ -22,12 +21,12 @@
 
 
 <link rel="stylesheet" href="/css/style.css" type="text/css" /><!-- Style -->	
-<link rel="stylesheet" href="css/responsive.css" type="text/css" /><!-- Responsive -->	
+<link rel="stylesheet" href="/css/responsive.css" type="text/css" /><!-- Responsive -->	
 <link rel="stylesheet" type="text/css" href="/css/revolution.css" media="screen" /> <!-- Slider Revolution -->	
 <link rel="alternate stylesheet " type="text/css" href="/css/purple.css" title="purple" /> <!-- Purple -->
 <link rel="alternate stylesheet" type="text/css" href="/css/green.css" title="green"/> <!-- Green -->
 <link rel="alternate stylesheet" type="text/css" href="/css/orange.css" title="orange" /> <!-- Orange -->
-<link rel="alternate stylesheet" type="text/css" href="/css/cyan.css" title="cyan"/> <!-- Cyan -->
+<link rel="alternate stylesheet" type="text/css" href="css/cyan.css" title="cyan"/> <!-- Cyan -->
 <link rel="alternate stylesheet" type="text/css" href="/css/red.css" title="red"/> <!-- Red -->
 <link rel="alternate stylesheet" type="text/css" href="/css/black.css" title="black"/> <!-- Black -->
 <link rel="alternate stylesheet" type="text/css" href="/css/pink.css" title="pink"/> <!-- Pink -->
@@ -35,7 +34,9 @@
 <link rel="alternate stylesheet" type="text/css" href="/css/grunge.css" title="grunge"/> <!-- Grunge -->
 <link rel="alternate stylesheet" type="text/css" href="/css/brown.css" title="brown"/> <!-- Brown -->
 
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -51,13 +52,6 @@
 }
 .active {
 	text-decoration:underline;
-}
-h5{
-    display: inline-block;
-    max-width: 400px;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
 }
 </style>
 
@@ -101,111 +95,56 @@ h5{
 				<a class="menu-dropdown-btn" title="">MENU <i class="fa fa-align-justify"></i></a>
 			<ul>
 				<li><a href="/top-world" title="">Top-50 World</a></li>
+					
 					<li><a href="/top-russia" title="">Top-250 Russia</a></li>
 					<li><a href="/top-italy" title="">Top-250 Italy</a></li>
-					<li><a href="/room" title="" class="active">Room</a></li>
+					<li><a href="/room" title="">Room</a></li>
 					<li><a href="/event" title="">Events</a></li>
 					<li><a href="#" title="">Clubs</a></li>
 					<li><a href="#" title="">Users</a></li>
 			</ul>
 		</div>	
-	</header>
-
-		<!-- ------------------------------------------------------------------------------ -->
-
-<section class="block" style="margin-top: -24px">
-	<div class="container">
-<p style="font-size: 30px">Rooms:<span style="color: gray">popular in the Russia</span><br><i style="font-size: 16px;color: Black">
- <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Location
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/rooms">World</a>
-            <a class="dropdown-item" href="/room/russia-rooms">Russia</a>
-            <a class="dropdown-item" href="/top-italy-popular-room">Italy</a>
-        </div>
-    </div></p>
-		
-
-		<div class="row black" style="border-botto: 1px solid #86BE99">
-			<% topss.forEach(function(topsss){ %>
-			<div class="col-md-12">
-				<aside>
-                    <a href="/russia-room/<%= topsss.id %>" id="btn">
-						<div class="product-tab" style="width: 150%;">
-					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
-<span style="color: black; font-size: 22px;"><%= topsss.name %></span>
- 
-								<div id="recent" class="tab-pane  in active">
-	                     <input type="hidden" name="roomIdd" value="<%= topsss.url %>">
-	                     <input type="hidden" name="id" value="<%= topsss.id %>">
-									<div class="tab-recent" id="tab-recent">
-										<ul style="text-decoration: none;list-style: none;">
-
-				<li><span style="margin-top: 10px;">
-					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="<%= topsss.img1 %>" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-
-											</span>
-											</li>
-											
-											
-										</ul>
+	</header><br><br>
+				<br><br>
+				<br><br>
 				
-									</div>
-								</div>
-		<h5 style="color:black"><i><%= topsss.comment %></i></h5><br><br>
-		<p><span style="color: black"><%= topsss.users %></span></p>					
-<br><br>
-								
-							</div>
-						</div>
-				    </a>
-				</aside>
-			</div>
-			<% }) %>
-			<!-- ------------------------------------------------------------------- -->
-        <!--   <div class="col-md-12">
-				<aside>
-                    <a href="">
-						<div class="product-tab" style="width: 150%;">
-					<div class="tab-content" id="myTabContent" style="background-color: #F2EFE4">
-<span style="color: black; font-size: 22px;">🍳Breakfast w/ Champions 💰The Millionaire Breakfast Club</span>
- 
-								<div id="recent" class="tab-pane fade in active">
-	
-									<div class="tab-recent" id="tab-recent">
-										<ul style="text-decoration: none;list-style: none;">
-				<li><span style="margin-top: 10px;">
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
-					<img src="images/product-tab.jpg" style="border-radius: 33px; width:60px;height: 60px; " alt=""  />
 
-											</span>
-											</li>
-											
-											
-										</ul>
+		<!-- ------------------------------------------------ -->
+		<div class="container">
+			<div class="card" style="background-color: white;padding: 12px">
+			  <div class="card-body">
+			  		<h2 style="color: black; font-size: 22px; margin-left:13px "></h2><br>
+			  	<h5 style="margin-left: 18px;float: left"><a href="#">🔗 Clubhouse link</a></h5><br><br>
+			  	<h5 style="color: gray; font-size: 22px;">Speakers (<%= top.length %>):</h5><br><br>
+			  	<div class="row">
+
+          <% top.forEach(function(tops){ %>
+             
+			  	<div class="col-md-2 col-sm-4">
+			  		<center>
+			     <span style="margin-top: 10px;">
+					<img src="<%= tops.img1 %>" style="border-radius: 33px; width:80px;height: 80px; " alt=""  />
+					</span>
+					<a href="/russia-users-detail/<%= tops.id %>">
+					<span><h5 style="color: black; font-family: 600"><%= tops.name %></h5></span>
+					<span><h5 style="color: gray;"><%= tops.username %></h5></span>
+				    </a></center>
+					</div>
+					
 				
-									</div>
-								</div>
-		<span style="color:black"><i>Glenn Lundy,LIZZA MONET MORALES,Scott Simons,William Tong,The Joint Venture Expert,Chris Winfield,</i></span>
-		<p><span>12345</span><i class="fas fa-user"></i> / <span>666</span><i class="fas fa-comment"></i>					
+			<% }); %>
+			  
+					
+				
+				 </div>
+<br>
+
+			  </div>
+			</div>	
+		</div>
+
+							
 <br><br>
-								
-							</div>
-						</div>
-				    </a>
-				</aside>
-			</div> -->
-			<!-- ------------------------------------------------------------------- -->
-		</div><br>
-
-	</div>
-
-</section>
 
 
 
@@ -288,25 +227,13 @@ h5{
 	});
 
 
-</script>	
-<!-- <script type="text/javascript">
-	// var _id = self.getAttribute("data-id");
-	function sayHi(phrase, who) {
-     // alert('location.href = "http://localhost:9000/top-world"');
-     window.location = "/Russia-rooms"; 
-   }
-setTimeout(sayHi, 30000); // Hello, John
-  
 </script>
-<script type="text/javascript">
-	function sayHii(phrase, who) {
-     // alert('location.href = "http://localhost:9000/top-world"');
-     // var _id = self.getAttribute("id");
-    window.location = "/russia-room";  
-   }
-setTimeout(sayHii, 32000); // Hello, John
 
-</script> -->
+<!-- <script type="text/javascript">
+	$("#btn").click(function(){
+  location.reload(true);
+});
+</script> -->	
 
 </body>
 

@@ -139,6 +139,53 @@
 				 </div>
 <br>
 
+<h5 style="color: gray; font-size: 22px;">Followed by speakers(<%= top1.length %>):</h5><br><br>
+			  	<div class="row">
+
+          <% top1.forEach(function(tops){ %>
+             
+			  	<div class="col-md-2 col-sm-4">
+			  		<center>
+			     <span style="margin-top: 10px;">
+					<img src="<%= tops.img1 %>" style="border-radius: 33px; width:80px;height: 80px; " alt=""  />
+					</span>
+					<a href="/russia-users-detail/<%= tops.id %>">
+					<span><h5 style="color: black; font-family: 600"><%= tops.name %></h5></span>
+					<span><h5 style="color: gray;"><%= tops.username %></h5></span>
+				    </a></center>
+					</div>
+					
+				
+			<% }); %>
+			  
+					
+				
+				 </div>
+<br>
+<h5 style="color: gray; font-size: 22px;">Others in the room(<%= top2.length %>):</h5><br><br>
+			  	<div class="row">
+
+          <% top2.forEach(function(tops){ %>
+             
+			  	<div class="col-md-2 col-sm-4">
+			  		<center>
+			     <span style="margin-top: 10px;">
+					<img src="<%= tops.img1 %>" style="border-radius: 33px; width:80px;height: 80px; " alt=""  />
+					</span>
+					<a href="/russia-users-detail/<%= tops.id %>">
+					<span><h5 style="color: black; font-family: 600"><%= tops.name %></h5></span>
+					<span><h5 style="color: gray;"><%= tops.username %></h5></span>
+				    </a></center>
+					</div>
+					
+				
+			<% }); %>
+			  
+					
+				
+				 </div>
+<br>
+
 			  </div>
 			</div>	
 		</div>
