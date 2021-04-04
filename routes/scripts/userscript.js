@@ -1034,7 +1034,6 @@ EventsRussia:async function(req,res){
   // slowMo: 250, // slow down by 250ms
    });
                 var allDelete = await EventsRussia.deleteMany({local:1 || ""});
-                if(allDelete){
 
             const newPage = await browser.newPage({headless: true});
             await newPage.setDefaultNavigationTimeout(0);
@@ -1061,28 +1060,6 @@ EventsRussia:async function(req,res){
                             // console.log(users)
                    const img1 = await element.$eval('img',image => image.src);
 
-                // const issueSrcs = await element.$eval('img',imgs => {
-                // const srcs =  Array.from("img").map(
-                //   (image) => image.src);
-                // // images.push(srcs)
-                // console.log(srcs)
-                //   return srcs;
-                //   images.push(srcs)
-                // }); 
-                // console.log(issueSrcs)
-
-
-        // var img1 =  await element.$eval('img',node1 => node1.src);                             
-                         
-                         // var img2 =  await element.$eval('.ChannelPreview__hostAvatar--PsdaI',node2 => node2.src);                             
-                          
-                          // let url = await element.$eval(a => a.getProperty('href'));
-                          // Rooms.deleteMany({local:1}).then(async(err,result)=>{
-                          //   if(top){
-                          //       top.users = users;
-                          //       top.save();
-                          //   }else{
-
                                const rooms = new EventsRussia({
                                 url:url,
                                 name:name,
@@ -1099,77 +1076,7 @@ EventsRussia:async function(req,res){
                           //   }
                           // })
                           }
-                                                     
-
-                       }else{
-                          
-                             const newPage = await browser.newPage({headless: true});
-            await newPage.setDefaultNavigationTimeout(0);
-            await newPage.goto("https://clubhouseranking.net/events?country_code=ru&page=1",{waitUntil: 'networkidle0'});
-
-              images = [];
-              const items = await newPage.$$('a.Events__eventPreview--1lVsw');
-              // const image = await newPage.$$('div.ChannelPreview__hostsAvatars--3Lt_o');
-              
-              
-                 for(let element of items){
-                      // for (let i = 0; i < image.length; i++) { 
-                  // console.log(element)
-                        // let url = await element.$eval(href);
-                          const handle = await element.$('selector');
-                          const url = await element.evaluate(anchor => anchor.getAttribute('href'), handle);
-                          const name = await element.$eval('.EventPreview__name--3fJES',node4 => node4.innerText.trim());
-                        
-                          const users = await element.$eval('.EventPreview__hostName--3Z9nQ',node3 => node3.innerText.trim());
-                          const time = await element.$eval('.EventPreview__time--RaNih',node => node.innerText.trim());
-                          const bio = await element.$eval('.EventPreview__description--3pD0_',node => node.innerText.trim());
-                         
-                            // console.log(comment)
-                            // console.log(users)
-                   const img1 = await element.$eval('img',image => image.src);
-
-                // const issueSrcs = await element.$eval('img',imgs => {
-                // const srcs =  Array.from("img").map(
-                //   (image) => image.src);
-                // // images.push(srcs)
-                // console.log(srcs)
-                //   return srcs;
-                //   images.push(srcs)
-                // }); 
-                // console.log(issueSrcs)
-
-
-        // var img1 =  await element.$eval('img',node1 => node1.src);                             
-                         
-                         // var img2 =  await element.$eval('.ChannelPreview__hostAvatar--PsdaI',node2 => node2.src);                             
-                          
-                          // let url = await element.$eval(a => a.getProperty('href'));
-                          // Rooms.deleteMany({local:1}).then(async(err,result)=>{
-                          //   if(top){
-                          //       top.users = users;
-                          //       top.save();
-                          //   }else{
-
-                               const rooms = new EventsRussia({
-                                url:url,
-                                name:name,
-                                users:users,
-                                bio:bio,
-                                time:time,
-                                img1:img1,
-                                // img2:img2,
-
-                                 });
-                               console.log(rooms)
-                               await rooms.save();
                            
-                          //   }
-                          // })
-                          }
-
-         
-                         }
-                            
                               
                         browser.close();
                         res.redirect('/event-russia')
